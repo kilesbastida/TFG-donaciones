@@ -1,0 +1,61 @@
+/* inicio.css */
+
+/* Establecer el fondo de la página (imagen) */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Tomar toda la altura de la ventana */
+    background-image: url('../img/intercambios.jpeg'); /* Reemplaza con la URL de tu imagen de fondo */
+    background-size: cover; /* Hacer que la imagen cubra toda la pantalla */
+    background-position: center; /* Centrar la imagen */
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white; /* Color del texto */
+    box-sizing: border-box;
+}
+
+/* Contenedor central del contenido */
+.container {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
+    border-radius: 10px;
+    max-width: 500px; /* Ancho máximo */
+    width: 100%; /* Ancho 100% hasta el límite máximo */
+    text-align: center;
+}
+
+/* Estilo del título principal */
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px; /* Espaciado entre letras */
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); /* Sombra para darle más visibilidad al texto */
+}
+
+/* Estilo del párrafo (subtítulo) */
+p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* Estilo del botón */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: white;
+    background-color: #4CAF50; /* Color verde */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Transición suave al cambiar de color */
+}
+
+.btn:hover {
+    background-color: #45a049; /* Color verde más oscuro al pasar el ratón */
+}
