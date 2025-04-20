@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,6 +12,14 @@ Route::get('/', function () {
 /*Route::get('/', function () {
     return view('welcome');
 });*/
+
+Route::get('/register', function () {
+    return view('registro');
+});
+
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
