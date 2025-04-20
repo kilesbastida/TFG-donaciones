@@ -36,14 +36,20 @@
     </header>
 
     <!-- 🎯 Contenido centrado -->
-    <main class="flex justify-center items-center h-screen">
-        <div class="text-center px-4">
+    <main class="flex flex-col justify-center items-center h-screen">
+        <!-- Título y descripción -->
+        <div class="text-center px-4 mb-8">
             <h1 class="text-5xl font-extrabold mb-4 drop-shadow-lg">
                 LocalGive
             </h1>
             <p class="text-xl font-medium max-w-xl mx-auto">
                 Sitio web centrado en la donación e intercambio de productos
             </p>
+        </div>
+        
+        <!-- Imagen debajo del título (no ocupa toda la pantalla) -->
+        <div class="w-full max-w-3xl h-auto">
+            <img src="{{ asset('img/intercambios.jpeg') }}" alt="Imagen de fondo" class="w-full h-auto object-cover rounded-md shadow-lg">
         </div>
     </main>
 
