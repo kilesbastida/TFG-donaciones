@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,6 +24,15 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
 // Ruta para procesar el inicio de sesión
 Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/'); // Puedes redirigir a donde quieras, por ejemplo, a la página de inicio
+})->name('logout');
 
 
 /*Route::get('/dashboard', function () {

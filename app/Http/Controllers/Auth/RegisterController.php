@@ -24,13 +24,20 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|confirmed|min:8',
+            'phone' => 'nullable|string|max:20',
+            'location' => 'nullable|string|max:255',
+            'transaction_type' => 'required|string|in:donacion,intercambio',
         ]);
+    
 
         // Crear el usuario
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'phone' => $request->phone,
+            'location' => $request->location,
+            'transaction_type' => $request->transaction_type,
         ]);
 
         // Loguear al usuario automáticamente después del registro
