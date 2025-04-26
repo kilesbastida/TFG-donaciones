@@ -1,3 +1,5 @@
+<?php
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -35,6 +37,6 @@ class RegisterController extends Controller
         Auth::login($user);
 
         // Redirigir al usuario a la vista de inicio (la que es tu página principal)
-        return redirect()->route('inicio');  // Cambié esto por la ruta de inicio
+        return redirect('/');  // Cambié esto por la ruta de inicio
     }
 }
