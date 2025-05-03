@@ -4,41 +4,35 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-
+// Ruta de la pantalla inicial del sitio web
 Route::get('/', function () {
     return view('inicio');
 });
 
-
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
-
-// Ruta para el formulario de registro
+// Rutas para el formulario de registro y proceso del mismo
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-
-// Ruta para el proceso de registro (POST)
 Route::post('/register', [RegisterController::class, 'register']);
 
+//Rutas para el formulario de inicio de sesión, proceso y cierre de sesión 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-
-// Ruta para procesar el inicio de sesión
 Route::post('/login', [LoginController::class, 'login']);
-
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+//Ruta para el menú principal de elección para navegación a través de la página web
 Route::get('/home', function () {
     return view('home');
 })->name('home');
 
+//Ruta del cierre de sesión en la pantalla principal
 Route::post('/logout', function () {
     Auth::logout();
     return redirect('/'); // Puedes redirigir a donde quieras, por ejemplo, a la página de inicio
 })->name('logout');
 
+/*Route::get('/', function () {
+    return view('welcome');
+});*/
 
 /*Route::get('/dashboard', function () {
     return view('dashboard');
