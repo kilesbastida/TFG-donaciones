@@ -22,9 +22,13 @@
                 Ver productos
             </a>
 
-            <a href="#" class="block bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
-                Cerrar sesión
-            </a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit"
+                    class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                    Cerrar sesión
+                </button>
+            </form>
         </div>
     </div>
 

@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 Route::get('/', function () {
     return view('inicio');
@@ -24,6 +27,8 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
 // Ruta para procesar el inicio de sesión
 Route::post('/login', [LoginController::class, 'login']);
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/home', function () {
     return view('home');
