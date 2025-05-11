@@ -18,12 +18,12 @@ class LoginController extends Controller
     public function login(Request $request){
         // Validar los datos de entrada
         $request->validate([
-            'email' => 'required|email',
+            'name' => 'required|string',
             'password' => 'required|string',
         ]);
 
         // Intentar iniciar sesión
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::attempt(['name' => $request->name, 'password' => $request->password])) {
             // Redirigir al usuario a la página principal o al dashboard
             return redirect()->route('home');
         }

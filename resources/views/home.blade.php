@@ -14,7 +14,7 @@
         <p class="text-lg mb-4 text-gray-600">Has iniciado sesión correctamente.</p>
 
         <div class="space-y-4">
-            <a href="#" class="block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+            <a href="{{ route('profile.perfil') }}" class="block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
                 Ir a mi perfil
             </a>
 

@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // Ruta de la pantalla inicial del sitio web
@@ -24,11 +24,13 @@ Route::get('/home', function () {
     return view('home');
 })->name('home');
 
-//Ruta del cierre de sesión en la pantalla principal
-Route::post('/logout', function () {
-    Auth::logout();
-    return redirect('/'); // Puedes redirigir a donde quieras, por ejemplo, a la página de inicio
-})->name('logout');
+Route::middleware(['auth'])->group(function () {
+    // Página de perfil
+    Route::get('/perfil', [ProfileController::class, 'perfil'])->name('profile.perfil');
+    
+    // Actualizar perfil
+    Route::post('/perfil', [ProfileController::class, 'update'])->name('profile.update');
+});
 
 /*Route::get('/', function () {
     return view('welcome');

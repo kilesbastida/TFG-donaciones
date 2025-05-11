@@ -21,11 +21,11 @@ class RegisterController extends Controller
     {
         // Validación de los datos ingresados
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:users,name',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|confirmed|min:8',
-            'phone' => 'nullable|string|max:20',
-            'location' => 'nullable|string|max:255',
+            'phone' => 'required|string|max:20',
+            'location' => 'required|string|max:255',
             'transaction_type' => 'required|string|in:donacion,intercambio',
         ]);
     

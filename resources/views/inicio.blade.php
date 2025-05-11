@@ -25,13 +25,14 @@
             </a>
         @else
             <span class="mr-4">Hola, <strong>{{ Auth::user()->name }}</strong></span>
-            <form method="POST" action="{{ route('logout') }}" class="inline">
+            <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit"
-                    class="border border-white hover:bg-white hover:text-red-600 font-semibold py-2 px-4 rounded-lg transition duration-300">
-                    Cerrar Sesión
+                    class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                    Cerrar sesión
                 </button>
             </form>
+            <!--border border-white hover:bg-white hover:text-red-600 font-semibold py-2 px-4 rounded-lg transition duration-300-->
         @endguest
     </header>
 

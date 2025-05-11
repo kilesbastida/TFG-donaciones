@@ -32,10 +32,10 @@
         <form action="{{ route('login') }}" method="POST">
             @csrf
 
-            <!-- Campo de correo electrónico -->
+            <!-- Campo de usuario -->
             <div class="mb-4">
-                <label for="email" class="block text-gray-700 font-semibold">Correo Electrónico</label>
-                <input type="email" name="email" id="email" value="{{ old('email') }}" 
+                <label for="name" class="block text-gray-700 font-semibold">Nombre de Usuario</label>
+                <input type="text" name="name" id="name" value="{{ old('name') }}" ... 
                        class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
                        placeholder="Escribe tu correo electrónico" required>
             </div>

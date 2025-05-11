@@ -15,10 +15,10 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
-                <!-- Nombre y Correo -->
+                <!-- Usuario y Correo -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                     <div class="mb-4">
-                        <label for="name" class="block text-gray-700 font-semibold mb-2">Nombre</label>
+                        <label for="name" class="block text-gray-700 font-semibold mb-2">Usuario</label>
                         <input type="text" name="name" id="name" value="{{ old('name') }}"
                             class="w-full border border-gray-300 rounded-lg px-4 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400">
                         @error('name')
