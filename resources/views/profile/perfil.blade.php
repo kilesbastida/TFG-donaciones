@@ -24,13 +24,18 @@
             <div class="flex justify-center mb-6">
                 <div class="text-center">
                     @if(Auth::user()->avatar)
-                        <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Avatar" class="w-32 h-32 rounded-full object-cover mx-auto">
+                        <img id="avatar-preview" src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Avatar" class="w-32 h-32 rounded-full object-cover mx-auto">
                     @else
-                        <div class="w-32 h-32 rounded-full bg-gray-300 mx-auto flex items-center justify-center text-gray-600">
+                        <div id="avatar-preview" class="w-32 h-32 rounded-full bg-gray-300 mx-auto flex items-center justify-center text-gray-600">
                             Sin imagen
                         </div>
                     @endif
-                    <input type="file" name="avatar" class="mt-2 block w-full text-sm text-gray-600">
+
+                    <!-- Estilo mejorado para el botón de selección -->
+                    <label for="avatar" class="mt-2 block w-full cursor-pointer text-sm text-white bg-blue-500 hover:bg-blue-600 font-semibold py-2 px-4 rounded-lg text-center transition duration-300">
+                        Seleccionar imagen
+                    </label>
+                    <input type="file" name="avatar" id="avatar" class="hidden" onchange="previewImage(event)">
                 </div>
             </div>
 
@@ -72,15 +77,41 @@
                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
             </div>
 
-            <!-- Botón -->
-            <div class="text-center">
+            <!-- Botones de acción (Guardar cambios y Volver) -->
+            <div class="flex justify-center space-x-4">
                 <button type="submit"
                         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
                     Guardar cambios
                 </button>
+                
+                <!-- Botón de volver -->
+                <a href="{{ route('home') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                    Volver a inicio
+                </a>
             </div>
+
         </form>
     </div>
+
+    <script>
+        // Función para previsualizar la imagen seleccionada
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            
+            // Función que se ejecuta cuando el archivo es cargado
+            reader.onload = function() {
+                const preview = document.getElementById('avatar-preview');
+                preview.src = reader.result; // Establece la imagen seleccionada como vista previa
+                preview.classList.remove('bg-gray-300'); // Elimina el fondo gris
+            }
+
+            // Lee la imagen seleccionada
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
 
 </body>
 </html>
