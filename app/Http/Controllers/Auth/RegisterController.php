@@ -26,7 +26,7 @@ class RegisterController extends Controller
             'password' => 'required|string|confirmed|min:8',
             'phone' => 'required|string|max:20',
             'location' => 'required|string|max:255',
-            'transaction_type' => 'required|string|in:donacion,intercambio',
+            'transaction_type' => 'required|string|in:donacion,intercambio,ambas',
         ]);
     
 
@@ -44,6 +44,6 @@ class RegisterController extends Controller
         Auth::login($user);
 
         // Redirigir al usuario a la vista de inicio (la que es tu página principal)
-        return redirect('/');  // Cambié esto por la ruta de inicio
+        return redirect('/home');  // Cambié esto por la ruta de inicio
     }
 }

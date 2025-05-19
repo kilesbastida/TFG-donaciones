@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
@@ -20,18 +21,31 @@ class ProfileController extends Controller
     // Actualizar el perfil
     public function update(Request $request)
     {
+        $user = Auth::user();
         // Validación de los datos
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
-            'password' => 'nullable|string|min:8|confirmed',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'phone' => 'nullable|string|max:20',
-            'location' => 'nullable|string|max:255',
-            'transaction_type' => 'nullable|in:donacion,intercambio',
+            'name' => ['required', 'string', 'max:255', Rule::unique('users', 'name')->ignore($user->id)],
+            'email' => ['required', 'string', 'email', 'max:255', 'regex:/@gmail\.com$/', Rule::unique('users', 'email')->ignore($user->id)],
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+            'avatar' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'phone' => ['required', 'digits:9', Rule::unique('users', 'phone')->ignore($user->id)],
+            'location' => ['required', 'string', 'max:255'],
+            'transaction_type' => ['nullable', 'in:donacion,intercambio,ambas'],
+        ], [
+            'name.required' => 'El nombre es obligatorio.',
+            'name.unique' => 'Este nombre ya está en uso.',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo debe ser una dirección válida.',
+            'email.unique' => 'Este correo ya está en uso.',
+            'email.regex' => 'El correo debe terminar en @gmail.com.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
+            'phone.required' => 'El teléfono es obligatorio.',
+            'phone.digits' => 'El teléfono debe tener exactamente 9 números.',
+            'phone.unique' => 'Este teléfono ya está en uso.',
+            'location.required' => 'La ubicación es obligatoria.',
         ]);
 
-        $user = Auth::user();
 
         // Actualizar nombre y email
         $user->name = $request->name;

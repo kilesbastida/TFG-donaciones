@@ -81,6 +81,7 @@
                     <select name="transaction_type" id="transaction_type" class="w-full border border-gray-300 rounded-lg px-4 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400">
                         <option value="donacion">Donación</option>
                         <option value="intercambio">Intercambio</option>
+                        <option value="ambas">Ambas</option>
                     </select>
                     @error('transaction_type')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

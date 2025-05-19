@@ -101,6 +101,7 @@
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
           <option value="donacion" {{ old('transaction_type', Auth::user()->transaction_type) == 'donacion' ? 'selected' : '' }}>Donación</option>
           <option value="intercambio" {{ old('transaction_type', Auth::user()->transaction_type) == 'intercambio' ? 'selected' : '' }}>Intercambio</option>
+          <option value="ambas" {{ old('transaction_type', Auth::user()->transaction_type) == 'ambas' ? 'selected' : '' }}>Ambas</option>
         </select>
         @error('transaction_type') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
       </div>
