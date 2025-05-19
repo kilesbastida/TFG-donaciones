@@ -1,117 +1,175 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Perfil</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Perfil</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 h-screen flex items-center justify-center p-4">
 
-    <div class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
-        <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Mi Perfil</h2>
-
-        @if(session('success'))
-            <div class="bg-green-100 text-green-800 p-4 rounded mb-4">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
-            @csrf
-
-            <!-- Imagen de perfil -->
-            <div class="flex justify-center mb-6">
-                <div class="text-center">
-                    @if(Auth::user()->avatar)
-                        <img id="avatar-preview" src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Avatar" class="w-32 h-32 rounded-full object-cover mx-auto">
-                    @else
-                        <div id="avatar-preview" class="w-32 h-32 rounded-full bg-gray-300 mx-auto flex items-center justify-center text-gray-600">
-                            Sin imagen
-                        </div>
-                    @endif
-
-                    <!-- Estilo mejorado para el botón de selección -->
-                    <label for="avatar" class="mt-2 block w-full cursor-pointer text-sm text-white bg-blue-500 hover:bg-blue-600 font-semibold py-2 px-4 rounded-lg text-center transition duration-300">
-                        Seleccionar imagen
-                    </label>
-                    <input type="file" name="avatar" id="avatar" class="hidden" onchange="previewImage(event)">
-                </div>
-            </div>
-
-            <!-- Nombre -->
-            <div class="mb-4">
-                <label for="name" class="block font-semibold text-gray-700">Nombre</label>
-                <input type="text" name="name" id="name" value="{{ old('name', Auth::user()->name) }}"
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
-                @error('name')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <!-- Correo -->
-            <div class="mb-4">
-                <label for="email" class="block font-semibold text-gray-700">Correo electrónico</label>
-                <input type="email" name="email" id="email" value="{{ old('email', Auth::user()->email) }}"
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
-                @error('email')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <!-- Contraseña nueva -->
-            <div class="mb-4">
-                <label for="password" class="block font-semibold text-gray-700">Nueva contraseña</label>
-                <input type="password" name="password" id="password"
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
-                       placeholder="Dejar en blanco si no deseas cambiarla">
-                @error('password')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <!-- Confirmar contraseña -->
-            <div class="mb-6">
-                <label for="password_confirmation" class="block font-semibold text-gray-700">Confirmar contraseña</label>
-                <input type="password" name="password_confirmation" id="password_confirmation"
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
-            </div>
-
-            <!-- Botones de acción (Guardar cambios y Volver) -->
-            <div class="flex justify-center space-x-4">
-                <button type="submit"
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
-                    Guardar cambios
-                </button>
-                
-                <!-- Botón de volver -->
-                <a href="{{ route('home') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
-                    Volver a inicio
-                </a>
-            </div>
-
-        </form>
+  @if(session('success'))
+    <div
+      id="success-notification"
+      class="fixed top-4 right-4 bg-green-100 text-green-800 p-3 rounded shadow-md text-sm font-medium z-50 animate-fade-in"
+      role="alert"
+    >
+      {{ session('success') }}
     </div>
+  @endif
 
-    <script>
-        // Función para previsualizar la imagen seleccionada
-        function previewImage(event) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
-            
-            // Función que se ejecuta cuando el archivo es cargado
-            reader.onload = function() {
-                const preview = document.getElementById('avatar-preview');
-                preview.src = reader.result; // Establece la imagen seleccionada como vista previa
-                preview.classList.remove('bg-gray-300'); // Elimina el fondo gris
-            }
+  <div class="max-w-4xl w-full bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Mi Perfil</h2>
 
-            // Lee la imagen seleccionada
-            if (file) {
-                reader.readAsDataURL(file);
-            }
+    <!-- Formulario -->
+    <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
+      @csrf
+
+      <!-- Imagen de perfil -->
+      <div class="flex justify-center mb-6">
+        <div class="text-center">
+          @if(Auth::user()->avatar)
+            <img id="avatar-preview" src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Avatar" class="w-24 h-24 rounded-full object-cover mx-auto border border-gray-300">
+          @else
+            <div id="avatar-preview" class="w-24 h-24 rounded-full bg-gray-300 mx-auto flex items-center justify-center text-gray-600 text-sm border border-gray-300">
+              Sin imagen
+            </div>
+          @endif
+
+          <label for="avatar" class="mt-2 block cursor-pointer text-sm text-white bg-blue-500 hover:bg-blue-600 font-semibold py-2 px-4 rounded-lg text-center transition duration-300">
+            Seleccionar imagen
+          </label>
+          <input type="file" name="avatar" id="avatar" class="hidden" onchange="previewImage(event)">
+        </div>
+      </div>
+
+      <!-- Grid de campos -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Nombre -->
+        <div>
+          <label for="name" class="block font-semibold text-gray-700 mb-1">Nombre</label>
+          <input type="text" name="name" id="name" value="{{ old('name', Auth::user()->name) }}"
+                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
+          @error('name') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <!-- Correo -->
+        <div>
+          <label for="email" class="block font-semibold text-gray-700 mb-1">Correo electrónico</label>
+          <input type="email" name="email" id="email" value="{{ old('email', Auth::user()->email) }}"
+                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
+          @error('email') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <!-- Contraseña -->
+        <div>
+          <label for="password" class="block font-semibold text-gray-700 mb-1">Nueva contraseña</label>
+          <input type="password" name="password" id="password"
+                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
+                 placeholder="Opcional">
+          @error('password') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <!-- Confirmar contraseña -->
+        <div>
+          <label for="password_confirmation" class="block font-semibold text-gray-700 mb-1">Confirmar contraseña</label>
+          <input type="password" name="password_confirmation" id="password_confirmation"
+                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <!-- Teléfono -->
+        <div>
+          <label for="phone" class="block font-semibold text-gray-700 mb-1">Teléfono</label>
+          <input type="text" name="phone" id="phone" value="{{ old('phone', Auth::user()->phone) }}"
+                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
+          @error('phone') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+        </div>
+
+        <!-- Ubicación -->
+        <div>
+          <label for="location" class="block font-semibold text-gray-700 mb-1">Ubicación</label>
+          <input type="text" name="location" id="location" value="{{ old('location', Auth::user()->location) }}"
+                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
+          @error('location') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+        </div>
+      </div>
+
+      <!-- Tipo de transacción -->
+      <div class="mt-4">
+        <label for="transaction_type" class="block font-semibold text-gray-700 mb-1">Tipo de transacción</label>
+        <select name="transaction_type" id="transaction_type"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
+          <option value="donacion" {{ old('transaction_type', Auth::user()->transaction_type) == 'donacion' ? 'selected' : '' }}>Donación</option>
+          <option value="intercambio" {{ old('transaction_type', Auth::user()->transaction_type) == 'intercambio' ? 'selected' : '' }}>Intercambio</option>
+        </select>
+        @error('transaction_type') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+      </div>
+
+      <!-- Botones -->
+      <div class="flex justify-center space-x-4 mt-6">
+        <button type="submit"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-8 rounded-lg transition duration-300 text-sm">
+          Guardar cambios
+        </button>
+        <a href="{{ route('home') }}"
+           class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2.5 px-8 rounded-lg transition duration-300 text-sm">
+          Volver a inicio
+        </a>
+      </div>
+    </form>
+  </div>
+
+  <style>
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in {
+      animation: fade-in 0.3s ease forwards;
+    }
+  </style>
+
+  <script>
+    // Desaparece la notificación tras 1,5 segundos
+    window.addEventListener('DOMContentLoaded', () => {
+      const notification = document.getElementById('success-notification');
+      if (notification) {
+        setTimeout(() => {
+          notification.style.transition = 'opacity 0.5s ease';
+          notification.style.opacity = '0';
+          setTimeout(() => {
+            notification.remove();
+          }, 500);
+        }, 1500);
+      }
+    });
+
+    function previewImage(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function () {
+        const preview = document.getElementById('avatar-preview');
+        if (preview.tagName === 'IMG') {
+          preview.src = reader.result;
+        } else {
+          const img = document.createElement('img');
+          img.src = reader.result;
+          img.classList.add('w-24', 'h-24', 'rounded-full', 'object-cover', 'mx-auto', 'border', 'border-gray-300');
+          img.id = 'avatar-preview';
+          preview.replaceWith(img);
         }
-    </script>
+      };
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
 
 </body>
 </html>

@@ -26,6 +26,9 @@ class ProfileController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
             'password' => 'nullable|string|min:8|confirmed',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'phone' => 'nullable|string|max:20',
+            'location' => 'nullable|string|max:255',
+            'transaction_type' => 'nullable|in:donacion,intercambio',
         ]);
 
         $user = Auth::user();
@@ -33,6 +36,9 @@ class ProfileController extends Controller
         // Actualizar nombre y email
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->location = $request->location;
+        $user->transaction_type = $request->transaction_type;
 
         // Actualizar la contraseña si es proporcionada
         if ($request->filled('password')) {
