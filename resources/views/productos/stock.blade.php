@@ -44,8 +44,15 @@
 
     <footer class="bg-white shadow p-4">
         <div class="max-w-xl mx-auto flex justify-center space-x-4">
-            <a href="{{ route('productos.create') }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300">Añadir Producto</a>
-            <a href="{{ route('productos.personales') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300">Ver mis productos</a>
+            <a href="{{ route('productos.create') }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                Añadir Producto
+            </a>
+            <a href="{{ route('productos.personales') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                Ver mis productos
+            </a>
+            <a href="{{ route('home') }}" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300"> 
+                Volver
+            </a>
         </div>
     </footer>
 
