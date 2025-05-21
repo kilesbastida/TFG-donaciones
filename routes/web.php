@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 // Ruta de la pantalla inicial del sitio web
@@ -31,6 +32,11 @@ Route::middleware(['auth'])->group(function () {
     // Actualizar perfil
     Route::post('/perfil', [ProfileController::class, 'update'])->name('profile.update');
 });
+
+Route::get('/productos', [ProductController::class, 'stock'])->name('productos.stock'); // stock.blade.php
+Route::get('/productos/personales', [ProductController::class, 'personales'])->name('productos.personales'); // personales.blade.php
+Route::get('/productos/crear', [ProductController::class, 'create'])->name('productos.create'); // create.blade.php
+Route::post('/productos', [ProductController::class, 'store'])->name('productos.store'); // no necesita vista
 
 /*Route::get('/', function () {
     return view('welcome');

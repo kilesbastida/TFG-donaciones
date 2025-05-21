@@ -37,7 +37,7 @@
                 <label for="name" class="block text-gray-700 font-semibold">Nombre de Usuario</label>
                 <input type="text" name="name" id="name" value="{{ old('name') }}" ... 
                        class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                       placeholder="Escribe tu correo electrónico" required>
+                       placeholder="Escribe tu nombre de usuario" required>
             </div>
 
             <!-- Campo de contraseña -->

@@ -18,7 +18,7 @@
                 Ir a mi perfil
             </a>
 
-            <a href="#" class="block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+            <a href="{{ route('productos.stock') }}" class="block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
                 Ver productos
             </a>
 
