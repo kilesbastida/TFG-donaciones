@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Route;
 
 // Ruta de la pantalla inicial del sitio web
@@ -41,6 +42,18 @@ Route::get('/productos/{id}', [ProductController::class, 'show'])->name('product
 Route::get('/productos/{id}/editar', [ProductController::class, 'edit'])->name('productos.edit');
 Route::put('/productos/{id}', [ProductController::class, 'update'])->name('productos.update');
 Route::delete('/productos/{id}', [ProductController::class, 'destroy'])->name('productos.destroy');
+
+Route::middleware(['auth'])->group(function () {
+    // Mostrar conversación de chat con otro usuario
+    Route::get('/chat/{userId}', [ChatController::class, 'show'])->name('chat.show');
+
+    // Enviar mensaje al usuario
+    Route::post('/chat', [ChatController::class, 'store'])->name('chat.store');
+
+    // Iniciar o abrir chat
+    Route::post('/chat/iniciar', [ChatController::class, 'iniciar'])->name('chat.iniciar');
+});
+
 
 
 /*Route::get('/', function () {

@@ -37,11 +37,16 @@
 
             <div class="flex flex-wrap gap-4 mt-6">
                 @if($producto->user !== Auth::id())
-                    <a href="{{ route('chat.iniciar', $producto->user) }}" 
-                       class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition">
-                        Enviar mensaje
-                    </a>
+                    <form action="{{ route('chat.iniciar') }}" method="POST" class="inline-block">
+                        @csrf
+                        <input type="hidden" name="receiver_id" value="{{ $producto->user }}">
+                        <button type="submit" 
+                                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition">
+                            Enviar mensaje
+                        </button>
+                    </form>
                 @endif
+
 
                 <a href="{{ route('productos.stock') }}" 
                    class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded transition">
