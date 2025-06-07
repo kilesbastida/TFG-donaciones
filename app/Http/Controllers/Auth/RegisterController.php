@@ -38,6 +38,7 @@ class RegisterController extends Controller
             'phone' => $request->phone,
             'location' => $request->location,
             'transaction_type' => $request->transaction_type,
+            'admin' => false,
         ]);
 
         // Loguear al usuario automáticamente después del registro

@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminProductController;
 use Illuminate\Support\Facades\Route;
 
 // Ruta de la pantalla inicial del sitio web
@@ -25,6 +27,24 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/home', function () {
     return view('home');
 })->name('home');
+
+Route::middleware(['auth'])->get('/panel', function () {
+    return view('admin.panel');
+})->name('admin.panel');
+
+Route::middleware(['auth'])->group(function () {
+    // Usuarios: listado, editar, actualizar, eliminar
+    Route::get('/userlist', [AdminUserController::class, 'index'])->name('admin.userlist');
+    Route::get('/userlist/{id}/edit', [AdminUserController::class, 'edit'])->name('admin.userlist.edit');
+    Route::put('/userlist/{id}', [AdminUserController::class, 'update'])->name('admin.userlist.update');
+    Route::delete('/userlist/{id}', [AdminUserController::class, 'destroy'])->name('admin.userlist.destroy');
+
+    // Productos: listado admin, ver detalle, eliminar
+    Route::get('/productlist', [AdminProductController::class, 'index'])->name('admin.productlist');
+    Route::get('/productlist/{id}', [AdminProductController::class, 'show'])->name('admin.productlist.show');
+    Route::delete('/productlist/{id}', [AdminProductController::class, 'destroy'])->name('admin.productlist.destroy');
+});
+
 
 Route::middleware(['auth'])->group(function () {
     // Página de perfil

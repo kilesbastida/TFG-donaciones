@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+
 
 class Product extends Model
 {
@@ -26,7 +28,7 @@ class Product extends Model
     /**
      * Relación con el usuario que subió el producto.
      */
-    public function user()
+    public function usuario()
     {
         // Aquí 'user' es la columna en productos que referencia a users.id
         return $this->belongsTo(User::class, 'user');

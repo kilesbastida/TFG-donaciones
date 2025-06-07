@@ -14,6 +14,12 @@
         <p class="text-lg mb-4 text-gray-600">Has iniciado sesión correctamente.</p>
 
         <div class="space-y-4">
+
+            @if(Auth::user()->admin)
+                <a href="{{ route('admin.panel') }}" class="block bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                    Panel de Administración
+                </a>
+            @endif
             <a href="{{ route('profile.perfil') }}" class="block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
                 Ir a mi perfil
             </a>
