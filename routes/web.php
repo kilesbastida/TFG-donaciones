@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\SolicitudController;
 use Illuminate\Support\Facades\Route;
 
 // Ruta de la pantalla inicial del sitio web
@@ -63,7 +64,19 @@ Route::get('/productos/{id}/editar', [ProductController::class, 'edit'])->name('
 Route::put('/productos/{id}', [ProductController::class, 'update'])->name('productos.update');
 Route::delete('/productos/{id}', [ProductController::class, 'destroy'])->name('productos.destroy');
 
+Route::post('/solicitudes/enviar', [SolicitudController::class, 'enviar'])->name('solicitudes.enviar');
+
 Route::middleware(['auth'])->group(function () {
+    Route::get('/solicitudes', [SolicitudController::class, 'index'])->name('solicitudes.index');
+    Route::post('/solicitudes/{id}/aceptar', [SolicitudController::class, 'responder'])->name('solicitudes.aceptar');
+    Route::post('/solicitudes/{id}/rechazar', [SolicitudController::class, 'responder'])->name('solicitudes.rechazar');
+    Route::post('/solicitudes/{id}/entregar', [SolicitudController::class, 'responder'])->name('solicitudes.entregar'); // nueva ruta
+    Route::delete('/solicitudes/{id}', [SolicitudController::class, 'destroy'])->name('solicitudes.destroy');
+
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('chats', [ChatController::class, 'index'])->name('chat.index');
     // Mostrar conversación de chat con otro usuario
     Route::get('/chat/{userId}', [ChatController::class, 'show'])->name('chat.show');
 

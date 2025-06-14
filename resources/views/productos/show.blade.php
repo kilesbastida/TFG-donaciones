@@ -45,6 +45,24 @@
                             Enviar mensaje
                         </button>
                     </form>
+
+                    {{-- Botón para enviar solicitud --}}
+                    <form action="{{ route('solicitudes.enviar') }}" method="POST" class="inline-block ml-2">
+                        @csrf
+                        <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                        
+                        <select name="tipo" required
+                                class="border rounded px-3 py-2 mr-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            <option value="" disabled selected>Tipo de solicitud</option>
+                            <option value="donacion">Donación</option>
+                            <option value="intercambio">Intercambio</option>
+                        </select>
+
+                        <button type="submit" 
+                                class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition">
+                            Enviar solicitud
+                        </button>
+                    </form>
                 @endif
 
 

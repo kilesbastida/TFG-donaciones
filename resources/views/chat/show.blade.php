@@ -25,15 +25,7 @@
             @endforeach
         </div>
 
-        <!-- Botón Volver -->
-        <div class="mb-4">
-            <a href="{{ route('productos.stock') }}" 
-               class="inline-block bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded transition">
-                ← Volver al catálogo
-            </a>
-        </div>
-
-        <form action="{{ route('chat.store') }}" method="POST" class="flex space-x-2" id="chatForm">
+        <form action="{{ route('chat.store') }}" method="POST" class="flex space-x-2 mb-4" id="chatForm">
             @csrf
             <input type="hidden" name="receiver_id" value="{{ $otherUser->id }}">
             <textarea name="message" rows="2" required
@@ -42,6 +34,20 @@
             <button type="submit" class="bg-blue-600 text-white px-4 rounded hover:bg-blue-700">Enviar</button>
         </form>
     </main>
+
+    <!-- Footer fijo con ambos botones -->
+    <footer class="bg-white shadow p-4 sticky bottom-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-center space-x-4">
+            <a href="{{ route('productos.stock') }}" 
+                class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+                Volver al catálogo
+            </a>
+            <a href="{{ route('home') }}" 
+               class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                Volver
+            </a>
+        </div>
+    </footer>
 
     <script>
         const textarea = document.getElementById('messageInput');

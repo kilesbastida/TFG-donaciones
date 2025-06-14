@@ -28,6 +28,15 @@
                 Ver productos
             </a>
 
+            <a href="{{ route('solicitudes.index') }}" class="block bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                Ver solicitudes
+            </a>
+
+            <a href="{{ route('chat.index') }}" class="block bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                Ir a mis chats
+            </a>
+
+
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit"

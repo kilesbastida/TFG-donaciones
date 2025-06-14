@@ -68,4 +68,28 @@ class ChatController extends Controller
 
         return redirect()->route('chat.show', ['userId' => $request->receiver_id]);
     }
+
+    public function index()
+    {
+        $userId = Auth::id();
+
+        // Obtener lista de usuarios con los que tienes chats (como sender o receiver)
+        $chats = Chat::where('sender_id', $userId)
+                    ->orWhere('receiver_id', $userId)
+                    ->with(['sender', 'receiver'])
+                    ->orderBy('updated_at', 'desc')
+                    ->get();
+
+        // Para obtener solo usuarios únicos con los que tienes chat
+        $userIds = $chats->flatMap(function($chat) use ($userId) {
+            return [$chat->sender_id, $chat->receiver_id];
+        })->unique()->filter(function($id) use ($userId) {
+            return $id != $userId;
+        });
+
+        $users = User::whereIn('id', $userIds)->get();
+
+        return view('chat.index', compact('users'));
+    }
+
 }

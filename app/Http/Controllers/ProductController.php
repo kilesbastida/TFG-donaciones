@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function stock(Request $request)
     {
-        $query = Product::query();
+        $query = Product::where('comprado', false); // <- Aquí filtramos los productos no comprados
 
         if ($request->has('transaction_type') && $request->transaction_type != '') {
             $query->where('transaction_type', $request->transaction_type);
@@ -24,6 +24,7 @@ class ProductController extends Controller
         return view('productos.stock', compact('productos'));
     }
 
+
     public function show($id)
     {
         $producto = Product::findOrFail($id);
@@ -33,7 +34,7 @@ class ProductController extends Controller
 
     public function personales()
     {
-        $productos = Product::where('user', Auth::id())->get();
+        $productos = Product::where('user', Auth::id())->where('comprado', false)->get();
         return view('productos.personales', compact('productos'));
     }
 
