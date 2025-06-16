@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\AdminDenunciasController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\DenunciaController;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/productlist', [AdminProductController::class, 'index'])->name('admin.productlist');
     Route::get('/productlist/{id}', [AdminProductController::class, 'show'])->name('admin.productlist.show');
     Route::delete('/productlist/{id}', [AdminProductController::class, 'destroy'])->name('admin.productlist.destroy');
+
+    Route::get('/admin/denuncias', function() { return view('admin.denuncias');})->name('admin.denuncias');
+    Route::get('/admin/denuncias/activas', [AdminDenunciasController::class, 'activas'])->name('admin.denuncias.activas');
+    Route::get('/admin/denuncias/historial', [AdminDenunciasController::class, 'historial'])->name('admin.denuncias.historial');
+    Route::get('/admin/denuncias/{id}', [AdminDenunciasController::class, 'showDenuncia'])->name('admin.denuncias.show');
+    Route::post('/admin/denuncias/{id}/resolver', [AdminDenunciasController::class, 'guardarResolucion'])->name('admin.denuncias.resolver');
+
 });
 
 
@@ -94,9 +102,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/denuncia/producto/{producto}', [DenunciaController::class, 'guardarProducto'])->name('denuncia.producto.guardar');
     Route::get('/denuncia/usuario/{usuario}', [DenunciaController::class, 'crearUsuario'])->name('denuncia.usuario');
     Route::post('/denuncia/usuario/{usuario}', [DenunciaController::class, 'guardarUsuario'])->name('denuncia.usuario.guardar');
-    Route::get('/admin/denuncias', [DenunciaController::class, 'index'])->name('admin.denuncias.index');
-    Route::get('/admin/denuncias/{id}', [DenunciaController::class, 'show'])->name('admin.denuncias.show');
-    Route::post('/admin/denuncias/{id}/resolver', [DenunciaController::class, 'resolver'])->name('admin.denuncias.resolver');
 });
 
 

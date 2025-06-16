@@ -24,10 +24,11 @@
             Gestión de Productos
         </a>
 
-        <a href="#" 
-           class="flex items-center justify-center h-36 rounded-lg shadow-lg bg-red-600 opacity-80 cursor-not-allowed text-2xl font-semibold drop-shadow-lg">
+        <a href="{{ route('admin.denuncias') }}" 
+            class="flex items-center justify-center h-36 rounded-lg shadow-lg bg-red-600 hover:bg-red-700 transition duration-300 text-2xl font-semibold drop-shadow-lg">
             Gestión de Denuncias
         </a>
+
 
     </main>
 

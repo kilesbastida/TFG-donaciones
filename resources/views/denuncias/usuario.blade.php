@@ -38,7 +38,7 @@
             </button>
         </form>
 
-        <a href="{{ route('home') }}" class="block mt-6 text-center text-purple-600 hover:underline">
+        <a href="{{ route('chat.show', $usuario->id) }}" class="block w-full mt-4 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded text-center transition">
             Volver
         </a>
     </div>

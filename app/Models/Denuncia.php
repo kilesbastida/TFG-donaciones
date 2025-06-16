@@ -23,7 +23,7 @@ class Denuncia extends Model
 
     public function producto()
     {
-        return $this->belongsTo(Producto::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function denunciante()
