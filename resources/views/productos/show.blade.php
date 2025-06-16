@@ -36,40 +36,67 @@
             </p>
 
             <div class="flex flex-wrap gap-4 mt-6">
-                @if($producto->user !== Auth::id())
-                    <form action="{{ route('chat.iniciar') }}" method="POST" class="inline-block">
+            @if($producto->user !== Auth::id())
+
+                {{-- 🔶 BOTÓN PRINCIPAL: Enviar solicitud --}}
+                <form action="{{ route('solicitudes.enviar') }}" method="POST" class="w-full">
+                    @csrf
+                    <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+
+                    <div class="inline-flex w-full mb-4">
+                        @if($producto->transaction_type === 'ambas')
+                            {{-- 🔸 Selector de tipo de transacción (solo si es "ambas") --}}
+                            <select name="tipo" required
+                                    class="rounded-l-md border-t border-l border-b border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 w-1/2">
+                                <option value="" disabled selected>Tipo de transacción</option>
+                                <option value="donacion">Donación</option>
+                                <option value="intercambio">Intercambio</option>
+                            </select>
+
+                            {{-- 🔸 Botón para enviar la solicitud --}}
+                            <button type="submit"
+                                    class="rounded-r-md bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 transition w-1/2">
+                                Enviar solicitud
+                            </button>
+                        @else
+                            {{-- 🔸 Botón directo si es donación o intercambio --}}
+                            <input type="hidden" name="tipo" value="{{ $producto->transaction_type }}">
+                            <button type="submit"
+                                    class="w-full rounded-md bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 transition">
+                                Solicitar {{ $producto->transaction_type === 'donacion' ? 'donación' : 'intercambio' }}
+                            </button>
+                        @endif
+                    </div>
+                </form>
+
+                {{-- 🔽 BOTONES SECUNDARIOS: Repartidos en 3 columnas --}}
+                <div class="grid grid-cols-3 gap-4 w-full">
+                    {{-- 🔹 Botón para iniciar chat --}}
+                    <form action="{{ route('chat.iniciar') }}" method="POST">
                         @csrf
                         <input type="hidden" name="receiver_id" value="{{ $producto->user }}">
                         <button type="submit" 
-                                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition">
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition">
                             Enviar mensaje
                         </button>
                     </form>
 
-                    {{-- Botón para enviar solicitud --}}
-                    <form action="{{ route('solicitudes.enviar') }}" method="POST" class="inline-block ml-2">
-                        @csrf
-                        <input type="hidden" name="producto_id" value="{{ $producto->id }}">
-                        
-                        <select name="tipo" required
-                                class="border rounded px-3 py-2 mr-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                            <option value="" disabled selected>Tipo de solicitud</option>
-                            <option value="donacion">Donación</option>
-                            <option value="intercambio">Intercambio</option>
-                        </select>
-
+                    {{-- 🔹 Botón de denuncia --}}
+                    <form action="{{ route('denuncia.producto', $producto->id) }}" method="GET">
                         <button type="submit" 
-                                class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition">
-                            Enviar solicitud
+                                class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition">
+                            Denunciar
                         </button>
                     </form>
-                @endif
 
+                    {{-- 🔹 Botón para volver al catálogo --}}
+                    <a href="{{ route('productos.stock') }}" 
+                    class="w-full block text-center bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded transition">
+                        Volver al catálogo
+                    </a>
+                </div>
 
-                <a href="{{ route('productos.stock') }}" 
-                   class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded transition">
-                    Volver al catálogo
-                </a>
+            @endif
             </div>
         </div>
     </main>

@@ -8,6 +8,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\DenunciaController;
 use Illuminate\Support\Facades\Route;
 
 // Ruta de la pantalla inicial del sitio web
@@ -86,6 +87,19 @@ Route::middleware(['auth'])->group(function () {
     // Iniciar o abrir chat
     Route::post('/chat/iniciar', [ChatController::class, 'iniciar'])->name('chat.iniciar');
 });
+
+// Rutas para denuncias de producto
+Route::middleware(['auth'])->group(function () {
+    Route::get('/denuncia/producto/{producto}', [DenunciaController::class, 'crearProducto'])->name('denuncia.producto');
+    Route::post('/denuncia/producto/{producto}', [DenunciaController::class, 'guardarProducto'])->name('denuncia.producto.guardar');
+    Route::get('/denuncia/usuario/{usuario}', [DenunciaController::class, 'crearUsuario'])->name('denuncia.usuario');
+    Route::post('/denuncia/usuario/{usuario}', [DenunciaController::class, 'guardarUsuario'])->name('denuncia.usuario.guardar');
+    Route::get('/admin/denuncias', [DenunciaController::class, 'index'])->name('admin.denuncias.index');
+    Route::get('/admin/denuncias/{id}', [DenunciaController::class, 'show'])->name('admin.denuncias.show');
+    Route::post('/admin/denuncias/{id}/resolver', [DenunciaController::class, 'resolver'])->name('admin.denuncias.resolver');
+});
+
+
 
 
 
