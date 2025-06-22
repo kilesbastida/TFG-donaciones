@@ -49,7 +49,7 @@
                         <div class="flex-1">
                             <p><strong>Producto:</strong> {{ $solicitud->producto->title }}</p>
                             <p><strong>Solicitante:</strong> {{ $solicitud->solicitante->name }}</p>
-                            <p><strong>Ciudad:</strong> {{ $solicitud->producto->location }}</p>
+                            <p><strong>Ciudad:</strong> {{ $solicitud->solicitante->location }}</p>
                             <p><strong>Transacción:</strong> {{ ucfirst($solicitud->tipo) }}</p>
                             <p><strong>Estado:</strong> 
                                 @if($solicitud->estado === 'pendiente')
@@ -66,19 +66,19 @@
 
                         <div class="flex flex-col gap-2">
                             @if($solicitud->estado === 'pendiente')
-                                <form method="POST" action="{{ route('solicitudes.responder', $solicitud->id) }}">
+                                <form method="POST" action="{{ route('solicitudes.aceptar', $solicitud->id) }}">
                                     @csrf
                                     <input type="hidden" name="accion" value="aceptar">
                                     <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Aceptar</button>
                                 </form>
 
-                                <form method="POST" action="{{ route('solicitudes.responder', $solicitud->id) }}">
+                                <form method="POST" action="{{ route('solicitudes.rechazar', $solicitud->id) }}">
                                     @csrf
                                     <input type="hidden" name="accion" value="rechazar">
                                     <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Rechazar</button>
                                 </form>
                             @elseif($solicitud->estado === 'aceptada')
-                                <form method="POST" action="{{ route('solicitudes.responder', $solicitud->id) }}">
+                                <form method="POST" action="{{ route('solicitudes.entregar', $solicitud->id) }}">
                                     @csrf
                                     <input type="hidden" name="accion" value="entregar">
                                     <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Marcar como entregado</button>

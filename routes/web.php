@@ -65,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/productos', [ProductController::class, 'stock'])->name('productos.stock'); // stock.blade.php
+Route::get('/productos/buscar', [ProductController::class, 'buscar'])->name('productos.buscar');
 Route::get('/productos/personales', [ProductController::class, 'personales'])->name('productos.personales'); // personales.blade.php
 Route::get('/productos/crear', [ProductController::class, 'create'])->name('productos.create'); // create.blade.php
 Route::post('/productos', [ProductController::class, 'store'])->name('productos.store'); // no necesita vista
@@ -72,6 +73,7 @@ Route::get('/productos/{id}', [ProductController::class, 'show'])->name('product
 Route::get('/productos/{id}/editar', [ProductController::class, 'edit'])->name('productos.edit');
 Route::put('/productos/{id}', [ProductController::class, 'update'])->name('productos.update');
 Route::delete('/productos/{id}', [ProductController::class, 'destroy'])->name('productos.destroy');
+
 
 Route::post('/solicitudes/enviar', [SolicitudController::class, 'enviar'])->name('solicitudes.enviar');
 

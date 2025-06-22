@@ -31,8 +31,13 @@
             <p class="text-sm text-gray-600 mb-4">
                 Publicado por: 
                 <span class="font-medium">
-                    {{ $producto->user === Auth::id() ? 'Tú' : 'Otro usuario' }}
+                    {{ $producto->usuario->name ?? 'Usuario desconocido' }}
                 </span>
+            </p>
+
+            {{-- Ubicación --}}
+            <p class="text-sm text-gray-600 mb-4">
+                Ubicación: <span class="font-medium">{{ $producto->location }}</span>
             </p>
 
             <div class="flex flex-wrap gap-4 mt-6">
@@ -95,7 +100,14 @@
                         Volver al catálogo
                     </a>
                 </div>
-
+            @else
+                {{-- ✅ BOTÓN DE VOLVER si el usuario es el publicador --}}
+                <div class="w-full mt-6">
+                    <a href="{{ route('productos.stock') }}"
+                    class="block w-full text-center bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded transition">
+                        Volver al catálogo
+                    </a>
+                </div>
             @endif
             </div>
         </div>

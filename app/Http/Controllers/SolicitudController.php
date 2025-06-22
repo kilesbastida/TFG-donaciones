@@ -90,7 +90,7 @@ class SolicitudController extends Controller
 
         $solicitud->save();
 
-        return back()->with('success', 'Solicitud ' . $request->accion . ' correctamente.');
+        return back();
     }
 
     public function destroy($id)
