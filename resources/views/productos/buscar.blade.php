@@ -52,10 +52,16 @@
             <!-- Filtro por ciudad -->
             <div class="mb-6">
                 <label for="location" class="block text-gray-700 font-semibold">Ciudad</label>
-                <input type="text" name="location" id="location"
-                       class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="Escribe la ciudad">
+                <input type="text" list="cities" name="location" id="location" value="{{ request('location') }}"
+                    class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Escribe la ciudad">
+                <datalist id="cities">
+                    @foreach ($ciudades as $city)
+                        <option value="{{ $city }}"></option>
+                    @endforeach
+                </datalist>
             </div>
+
 
             <!-- Botón de búsqueda -->
             <div class="mb-4">

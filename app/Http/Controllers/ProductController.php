@@ -29,7 +29,8 @@ class ProductController extends Controller
         }
 
         $productos = $query->latest()->get();
-        return view('productos.stock', compact('productos'));
+        $ciudades = Product::select('location')->distinct()->orderBy('location')->pluck('location');
+        return view('productos.stock', compact('productos', 'ciudades'));
     }
 
     public function show($id)
@@ -116,7 +117,7 @@ class ProductController extends Controller
 
     public function buscar()
     {
-        $ciudades = Product::select('location')->distinct()->orderBy('location')->pluck('location');
+        $ciudades = include resource_path('cities.php');
         return view('productos.buscar', compact('ciudades'));
     }
 }
