@@ -9,19 +9,29 @@
 <body class="bg-white min-h-screen flex flex-col">
 
     <!-- Header fijo arriba -->
-    <header class="bg-white p-4 shadow fixed top-0 left-0 w-full z-50 flex items-center justify-between">
-        <h1 class="text-3xl font-bold text-gray-800 text-center flex-grow">
-            Productos
-        </h1>
+    <header class="bg-white p-4 shadow fixed top-0 left-0 w-full z-50">
+        <div class="relative flex items-center justify-center">
+            <!-- Título centrado -->
+            <h1 class="text-3xl font-bold text-gray-800">Productos</h1>
 
-        <a href="{{ route('productos.buscar') }}" title="Buscar productos" class="text-gray-600 hover:text-gray-900">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
-            </svg>
-        </a>
+            <!-- Íconos flotantes a la derecha -->
+            <div class="absolute right-0 flex items-center space-x-2">
+                <a href="{{ route('productos.buscar') }}" title="Buscar productos" class="text-gray-600 hover:text-gray-900">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
+                    </svg>
+                </a>
+
+                @if(request()->hasAny(['title', 'location', 'estado', 'transaction_type']))
+                    <a href="{{ route('productos.stock') }}" class="text-red-600 hover:text-red-800 font-bold text-lg ml-1" title="Eliminar filtros">
+                        &times;
+                    </a>
+                @endif
+            </div>
+        </div>
     </header>
 
-    <!-- Main: contenido con scroll, dejando espacio para header y footer -->
+    <!-- Main -->
     <main class="flex-grow overflow-y-auto container mx-auto px-4 py-6" style="margin-top: 64px; margin-bottom: 64px;">
         @if(session('success'))
             <div class="mb-6 max-w-xl mx-auto bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded text-center">

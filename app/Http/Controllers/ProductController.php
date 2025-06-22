@@ -10,27 +10,33 @@ class ProductController extends Controller
 {
     public function stock(Request $request)
     {
-        $query = Product::where('comprado', false); // <- Aquí filtramos los productos no comprados
+        $query = Product::where('comprado', false);
 
-        if ($request->has('transaction_type') && $request->transaction_type != '') {
-            $query->where('transaction_type', $request->transaction_type);
+        if ($request->filled('title')) {
+            $query->where('title', 'LIKE', '%' . $request->title . '%');
         }
 
-        if ($request->has('location') && $request->location != '') {
+        if ($request->filled('location')) {
             $query->where('location', 'LIKE', '%' . $request->location . '%');
+        }
+
+        if ($request->filled('estado')) {
+            $query->where('estado', $request->estado);
+        }
+
+        if ($request->filled('transaction_type')) {
+            $query->where('transaction_type', $request->transaction_type);
         }
 
         $productos = $query->latest()->get();
         return view('productos.stock', compact('productos'));
     }
 
-
     public function show($id)
     {
         $producto = Product::findOrFail($id);
         return view('productos.show', compact('producto'));
     }
-
 
     public function personales()
     {
@@ -65,7 +71,7 @@ class ProductController extends Controller
             'image' => $path,
         ]);
 
-        return redirect()->route('productos.stock')->with('success', 'Producto creado correctamente.');
+        return redirect()->route('productos.stock');
     }
 
     public function edit($id)
@@ -108,4 +114,9 @@ class ProductController extends Controller
         return redirect()->route('productos.personales')->with('success', 'Producto eliminado correctamente.');
     }
 
+    public function buscar()
+    {
+        $ciudades = Product::select('location')->distinct()->orderBy('location')->pluck('location');
+        return view('productos.buscar', compact('ciudades'));
+    }
 }
