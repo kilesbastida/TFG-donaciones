@@ -55,10 +55,6 @@
                 </button>
             </div>
 
-            <!-- Enlace para recuperar la contraseña -->
-            
-        </form>
-
         <!-- Enlace para registrarse -->
         <div class="mt-6 text-center">
             <p class="text-gray-700">¿No tienes cuenta? <a href="{{ route('register') }}" class="text-blue-500 hover:text-blue-700">Regístrate</a></p>
