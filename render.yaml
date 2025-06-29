@@ -14,3 +14,17 @@ services:
         value: false
       - key: APP_URL
         value: https://localgive.onrender.com
+      - key: APP_KEY
+        value: base64:Q6Tpmm6O9FKEX02CUXM8ZvTua7O2T6ryBt7TCFoOyGw=
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        value: hopper.proxy.rlwy.net
+      - key: DB_PORT
+        value: "10765"
+      - key: DB_DATABASE
+        value: railway
+      - key: DB_USERNAME
+        value: root
+      - key: DB_PASSWORD
+        value: uBhMlbpdxvwVNOzzSudTKoyxHeMFmkrd
