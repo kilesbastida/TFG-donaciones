@@ -127,9 +127,5 @@ Route::middleware('auth')->group(function () {
 //require __DIR__.'/auth.php';
 
 Route::get('/envcheck', function () {
-    return [
-        'APP_ENV' => env('APP_ENV'),
-        'APP_DEBUG' => env('APP_DEBUG'),
-        'DB_HOST' => env('DB_HOST'),
-    ];
+    return 'Laravel está funcionando';
 });
