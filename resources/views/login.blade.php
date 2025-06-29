@@ -48,15 +48,6 @@
                        placeholder="Escribe tu contraseña" required>
             </div>
 
-            <!-- Checkbox "Recuérdame" -->
-            <div class="mb-4">
-                <label for="remember" class="inline-flex items-center">
-                    <input type="checkbox" name="remember" id="remember" 
-                           class="form-checkbox h-5 w-5 text-blue-600">
-                    <span class="ml-2 text-gray-700">Recuérdame</span>
-                </label>
-            </div>
-
             <!-- Botón de inicio de sesión -->
             <div class="flex items-center justify-between">
                 <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-200">
