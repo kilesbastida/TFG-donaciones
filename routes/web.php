@@ -55,9 +55,9 @@ Route::middleware(['auth'])->group(function () {
     // Gestión de Productos: vista de selección (activas o historial), listado activas, ver y resolver, listado historial
     Route::get('/admin/denuncias', function() { return view('admin.denuncias');})->name('admin.denuncias'); //Vista de selección (activas o historial)
     Route::get('/admin/denuncias/activas', [AdminDenunciasController::class, 'activas'])->name('admin.denuncias.activas'); //Listado de activas
+    Route::get('/admin/denuncias/historial', [AdminDenunciasController::class, 'historial'])->name('admin.denuncias.historial'); //Listado de denuncias resueltas
     Route::get('/admin/denuncias/{id}', [AdminDenunciasController::class, 'showDenuncia'])->name('admin.denuncias.show'); //Ver detalles de la denuncia activa
     Route::post('/admin/denuncias/{id}/resolver', [AdminDenunciasController::class, 'guardarResolucion'])->name('admin.denuncias.resolver'); //Resolver la denuncia activa, guardando la resolución de la misma
-    Route::get('/admin/denuncias/historial', [AdminDenunciasController::class, 'historial'])->name('admin.denuncias.historial'); //Listado de denuncias resueltas
 
 });
 
@@ -72,10 +72,10 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/productos', [ProductController::class, 'stock'])->name('productos.stock'); //Listado de productos posteados
 Route::get('/productos/buscar', [ProductController::class, 'buscar'])->name('productos.buscar'); //Formulario de búsqueda de producto
-Route::get('/productos/{id}', [ProductController::class, 'show'])->name('productos.show'); //Ver los detalles de un artículo
 Route::get('/productos/crear', [ProductController::class, 'create'])->name('productos.create'); //Formulario para subir un producto a la web
 Route::post('/productos', [ProductController::class, 'store'])->name('productos.store'); //Procesa el formulario y muestra el listado de productos actualizado
 Route::get('/productos/personales', [ProductController::class, 'personales'])->name('productos.personales'); //Listado de productos posteados por ti
+Route::get('/productos/{id}', [ProductController::class, 'show'])->name('productos.show'); //Ver los detalles de un artículo
 Route::get('/productos/{id}/editar', [ProductController::class, 'edit'])->name('productos.edit'); //Formulario de edición de un artículo
 Route::put('/productos/{id}', [ProductController::class, 'update'])->name('productos.update'); //Procesa el formulario y actualiza los datos
 Route::delete('/productos/{id}', [ProductController::class, 'destroy'])->name('productos.destroy'); //Eliminación de un producto 
