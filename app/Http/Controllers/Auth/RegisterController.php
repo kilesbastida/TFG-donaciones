@@ -47,7 +47,7 @@ class RegisterController extends Controller
         // Loguear al usuario automáticamente después del registro
         Auth::login($user);
 
-        // Redirigir al usuario a la vista de inicio (la que es tu página principal)
-        return redirect('/home');  // Cambié esto por la ruta de inicio
+        // Redirigir al usuario a la vista de inicio (home.blade.php)
+        return redirect('/home');
     }
 }

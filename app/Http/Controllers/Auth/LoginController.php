@@ -11,10 +11,10 @@ class LoginController extends Controller
     // Mostrar el formulario de inicio de sesión
     public function showLoginForm()
     {
-        return view('login'); // Asegúrate de tener una vista login.blade.php
+        return view('login');
     }
 
-    // Procesar el inicio de sesión
+    // Procesar el formulario de inicio de sesión
     public function login(Request $request){
         // Validar los datos de entrada
         $request->validate([
@@ -24,7 +24,7 @@ class LoginController extends Controller
 
         // Intentar iniciar sesión
         if (Auth::attempt(['name' => $request->name, 'password' => $request->password])) {
-            // Redirigir al usuario a la página principal o al dashboard
+            // Redirigir al usuario a la página principal home.blade.php
             return redirect()->route('home');
         }
 
@@ -32,6 +32,7 @@ class LoginController extends Controller
         return back()->withErrors(['email' => 'Las credenciales no coinciden']);
     }
 
+    //Cerrar sesión
     public function logout(Request $request)
     {
     Auth::logout();
