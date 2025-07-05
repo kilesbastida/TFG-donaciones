@@ -37,7 +37,10 @@ Route::get('/home', function () {
 //Rutas del panel de administración
 
 Route::middleware(['auth'])->get('/panel', function () {
+    if (Auth::check() && Auth::user()->admin) {
     return view('admin.panel');  //Devuelve la vista del panel de administración
+    }
+    abort(403, 'Acceso denegado');
 })->name('admin.panel');
 
 Route::middleware(['auth'])->group(function () {
