@@ -22,7 +22,7 @@ class AdminDenunciasController extends Controller
     // Cambiado de formResolver a showDenuncia
     public function showDenuncia($id)
     {
-        $denuncia = Denuncia::findOrFail($id);
+        $denuncia = Denuncia::with('producto', 'denunciante', 'denunciado')->findOrFail($id);
 
         if ($denuncia->estado === 'resuelta') {
             return redirect()->route('admin.denuncias.activas');
