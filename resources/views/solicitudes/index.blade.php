@@ -7,9 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/alpinejs" defer></script>
 </head>
-<body class="bg-gray-100 min-h-screen p-6 font-sans flex flex-col">
+<body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen p-6 font-sans flex flex-col">
 
-    <div class="max-w-6xl mx-auto bg-white p-8 rounded-lg shadow-lg flex-grow overflow-y-auto">
+    <div class="max-w-6xl mx-auto bg-white p-8 rounded-lg shadow-lg flex-grow overflow-y-auto relative z-10">
 
         <h1 class="text-3xl font-bold mb-6 text-gray-800 text-center">Mis Solicitudes</h1>
 
@@ -133,7 +133,7 @@
     </div>
 
     {{-- Footer fijo con botón Volver --}}
-    <footer class="bg-white shadow p-4 sticky bottom-0 z-50">
+    <footer class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 shadow p-4 sticky bottom-0 z-50">
         <div class="max-w-6xl mx-auto flex justify-center">
             <a href="{{ route('home') }}" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
                 Volver

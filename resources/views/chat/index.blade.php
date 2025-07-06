@@ -6,15 +6,15 @@
     <title>Mis Chats</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col">
+<body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen flex flex-col">
 
-<header class="bg-white p-4 shadow">
-    <h1 class="text-2xl font-semibold text-center">Mis Chats</h1>
+<header class="p-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-white">
+    <h1 class="text-3xl font-bold text-center">Mis Chats</h1>
 </header>
 
 <main class="flex-grow container mx-auto p-4">
     @if($users->isEmpty())
-        <p class="text-center text-gray-600 mt-10">No tienes chats iniciados.</p>
+        <p class="text-center text-white mt-10">No tienes chats iniciados.</p>
     @else
         <ul class="max-w-md mx-auto space-y-4">
             @foreach($users as $user)
@@ -37,7 +37,7 @@
     @endif
 </main>
 
-<footer class="bg-white shadow p-4 sticky bottom-0 z-50">
+<footer class="p-4 sticky bottom-0 z-50 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-white shadow">
     <div class="max-w-xl mx-auto flex justify-center space-x-4">
         <a href="{{ route('home') }}" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
             Volver

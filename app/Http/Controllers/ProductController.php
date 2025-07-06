@@ -104,7 +104,7 @@ class ProductController extends Controller
         $producto->transaction_type = $request->transaction_type;
         $producto->save();
 
-        return redirect()->route('productos.personales')->with('success', 'Producto actualizado correctamente.');
+        return redirect()->route('productos.personales');
     }
 
     public function destroy($id)

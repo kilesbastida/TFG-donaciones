@@ -8,9 +8,15 @@
 </head>
 <body class="bg-gradient-to-r from-green-400 via-blue-500 to-red-500 text-white font-['Roboto'] min-h-screen flex flex-col">
 
-    <header class="flex-shrink-0 py-10">
+    <header class="relative py-10 px-10">
         <h2 class="text-4xl font-bold text-center text-black drop-shadow-lg">Bienvenido al Panel de Administración</h2>
+        <a href="{{ route('home') }}"
+        class="absolute top-10 right-10 bg-gray-200 text-gray-800 hover:bg-gray-300 font-bold py-2 px-6 rounded-lg text-sm transition duration-300 shadow-md">
+            Salir del modo admin
+        </a>
     </header>
+
+
 
     <main class="flex-grow flex flex-col max-w-4xl mx-auto w-full px-10 space-y-6">
 

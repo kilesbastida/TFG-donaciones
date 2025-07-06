@@ -5,16 +5,19 @@
     <title>Mis Productos</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 py-8 px-4">
+<body class="min-h-screen bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 py-8 px-4">
 
 <div class="max-w-6xl mx-auto">
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-gray-800">Mis Productos</h1>
+    <div class="relative flex items-center justify-center mb-6">
+        <h1 class="text-3xl font-bold text-white absolute left-1/2 transform -translate-x-1/2">
+            Mis Productos
+        </h1>
         <a href="{{ route('productos.stock') }}"
-           class="inline-block bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded shadow">
+        class="ml-auto bg-gray-800 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded shadow">
             Volver al Catálogo
         </a>
     </div>
+
 
     @if (session('success'))
         <div class="bg-green-100 text-green-800 p-4 mb-4 rounded shadow">
@@ -23,7 +26,10 @@
     @endif
 
     @if ($productos->isEmpty())
-        <p class="text-gray-600">No has publicado ningún producto aún.</p>
+        <!-- Fondo completo con mensaje centrado -->
+        <div class="flex items-center justify-center h-[60vh]">
+            <p class="text-white text-xl text-center">No has publicado ningún producto aún.</p>
+        </div>
     @else
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($productos as $producto)

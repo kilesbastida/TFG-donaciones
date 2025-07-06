@@ -26,5 +26,15 @@
 
 </main>
 
+<!-- Footer con botón grande -->
+<footer class="py-6 mt-10">>
+    <div class="text-center">
+        <a href="{{ route('admin.panel') }}"
+           class="inline-block bg-gray-800 hover:bg-gray-900 text-white text-lg font-bold py-3 px-10 rounded-lg transition duration-300 shadow-lg">
+            Volver
+        </a>
+    </div>
+</footer>
+
 </body>
 </html>

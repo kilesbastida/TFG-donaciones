@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Editar Producto</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 py-10 px-4">
+<body class="min-h-screen bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 py-10 px-4 flex justify-center">
 
-<div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow">
-    <h1 class="text-2xl font-bold mb-6 text-gray-800">Editar Producto</h1>
+<div class="max-w-2xl w-full bg-white p-6 rounded-xl shadow">
+    <h1 class="text-2xl font-bold mb-6 text-gray-800 text-center">Editar Producto</h1>
 
     <form action="{{ route('productos.update', $producto->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -63,16 +63,15 @@
         </div>
 
         {{-- Botones --}}
-        <div class="flex justify-between">
-            <a href="{{ route('productos.personales') }}"
-               class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded shadow">
-                Volver
-            </a>
-
+        <div class="flex justify-center space-x-4 mt-6">
             <button type="submit"
-                    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded shadow">
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-8 rounded-lg transition duration-300 text-sm">
                 Guardar Cambios
             </button>
+            <a href="{{ route('productos.personales') }}"
+            class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2.5 px-8 rounded-lg transition duration-300 text-sm">
+                Volver
+            </a>
         </div>
     </form>
 </div>

@@ -6,7 +6,7 @@
     <title>Historial de Denuncias</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-green-600 text-white font-['Roboto'] min-h-screen flex flex-col">
+<body class="bg-green-600 text-white font-['Roboto'] h-screen flex flex-col">
 
 <header class="flex-shrink-0 py-10">
     <h2 class="text-4xl font-bold text-center drop-shadow-lg">Historial de Denuncias</h2>
@@ -16,8 +16,7 @@
     </nav>
 </header>
 
-<main class="flex-grow max-w-4xl mx-auto w-full px-10 space-y-6">
-
+<main class="flex-grow max-w-4xl mx-auto w-full px-10 space-y-6 overflow-y-auto">
     @if ($denuncias->isEmpty())
         <p class="text-center text-lg">No hay denuncias resueltas en el historial.</p>
     @else
@@ -31,8 +30,16 @@
             @endforeach
         </ul>
     @endif
-
 </main>
+
+<footer class="flex-shrink-0 py-6 mt-10">
+    <div class="text-center">
+        <a href="{{ route('admin.panel') }}"
+           class="inline-block bg-gray-800 hover:bg-gray-900 text-white text-lg font-bold py-3 px-10 rounded-lg transition duration-300 shadow-lg">
+            Volver al panel
+        </a>
+    </div>
+</footer>
 
 </body>
 </html>

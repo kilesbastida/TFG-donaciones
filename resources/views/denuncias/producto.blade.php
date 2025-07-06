@@ -6,15 +6,14 @@
     <title>Denunciar Producto</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col">
+<body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen flex flex-col">
 
-<header class="bg-white shadow p-4">
-    <h1 class="text-2xl font-bold text-center text-gray-800">Denunciar Producto: {{ $producto->title }}</h1>
+<header class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-4">
+    <h1 class="text-2xl font-bold text-center text-white">Denunciar Producto: {{ $producto->title }}</h1>
 </header>
 
 <main class="flex-grow container mx-auto px-4 py-8">
-    <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow">
-
+    <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow relative z-10">
         <form action="{{ route('denuncia.producto.guardar', $producto->id) }}" method="POST">
             @csrf
 
@@ -44,7 +43,6 @@
            class="block w-full mt-4 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded text-center transition">
             Volver
         </a>
-
     </div>
 </main>
 

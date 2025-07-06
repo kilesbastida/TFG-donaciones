@@ -6,14 +6,14 @@
     <title>Detalle del Producto</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col">
+<body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen flex flex-col">
 
-    <header class="bg-white shadow p-4">
-        <h1 class="text-3xl font-bold text-center text-gray-800">Detalle del Producto</h1>
+    <header class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-4">
+        <h1 class="text-3xl font-bold text-center text-white">Detalle del Producto</h1>
     </header>
 
     <main class="flex-grow container mx-auto px-4 py-8">
-        <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
+        <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow relative z-10">
             <img src="{{ asset('storage/' . $producto->image) }}" alt="{{ $producto->title }}" class="w-full h-64 object-cover rounded mb-6">
 
             <h2 class="text-2xl font-bold mb-2 text-gray-800">{{ $producto->title }}</h2>

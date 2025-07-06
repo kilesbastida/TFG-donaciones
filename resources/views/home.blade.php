@@ -6,7 +6,7 @@
     <title>Menú Principal</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center font-sans">
+<body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen flex items-center justify-center font-sans">
 
     <div class="bg-white p-8 rounded-lg shadow-lg text-center w-full max-w-2xl">
         <h1 class="text-4xl font-bold mb-6 text-gray-800">¡Bienvenido/a, {{ Auth::user()->name }}!</h1>
