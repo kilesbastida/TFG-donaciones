@@ -37,9 +37,11 @@
                     <img src="{{ asset('storage/' . $producto->image) }}" alt="Imagen del producto"
                          class="w-full h-48 object-cover rounded mb-4">
                     <h2 class="text-xl font-bold text-gray-800 mb-2">{{ $producto->title }}</h2>
-                    <p class="text-gray-600 mb-1"><strong>Estado:</strong> {{ $producto->estado }}</p>
-                    <p class="text-gray-600 mb-1"><strong>Tipo:</strong> {{ $producto->transaction_type }}</p>
-                    <p class="text-gray-600 mb-4">{{ $producto->description }}</p>
+                    <p class="text-gray-600 mb-1"><strong>Descripción:</strong> {{ $producto->description }}</p>
+                    <p class="text-gray-600 mb-1"><strong>Estado:</strong> <span class="capitalize">{{ $producto->estado }}</span></p>
+                    <p class="text-gray-600 mb-1"><strong>Categoría:</strong> {{ $producto->categoria->nombre ?? 'Sin categoría' }}</p>
+                    <p class="text-gray-600 mb-1"><strong>Tipo de Transacción:</strong> <span class="capitalize">{{ $producto->transaction_type }}</span></p>
+                    <p class="text-gray-600 mb-2"><strong>Ubicación:</strong> {{ $producto->location }}</p>
 
                     <div class="flex justify-between items-center">
                         <a href="{{ route('productos.edit', $producto->id) }}"
