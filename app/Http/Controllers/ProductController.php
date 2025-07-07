@@ -112,7 +112,7 @@ class ProductController extends Controller
         $producto = Product::where('id', $id)->where('user', Auth::id())->firstOrFail();
         $producto->delete();
 
-        return redirect()->route('productos.personales')->with('success', 'Producto eliminado correctamente.');
+        return redirect()->route('productos.personales');
     }
 
     public function buscar()

@@ -41,7 +41,7 @@
                     <p class="text-gray-600 mb-1"><strong>Estado:</strong> <span class="capitalize">{{ $producto->estado }}</span></p>
                     <p class="text-gray-600 mb-1"><strong>Categoría:</strong> {{ $producto->categoria->nombre ?? 'Sin categoría' }}</p>
                     <p class="text-gray-600 mb-1"><strong>Tipo de Transacción:</strong> <span class="capitalize">{{ $producto->transaction_type }}</span></p>
-                    <p class="text-gray-600 mb-2"><strong>Ubicación:</strong> {{ $producto->location }}</p>
+                    <p class="text-gray-600 mb-4"><strong>Ubicación:</strong> {{ $producto->location }}</p>
 
                     <div class="flex justify-between items-center">
                         <a href="{{ route('productos.edit', $producto->id) }}"
