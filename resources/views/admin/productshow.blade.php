@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" x-data="{ open: false }" @keydown.escape="open = false">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Detalle del Producto</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="min-h-screen flex flex-col bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
 
@@ -15,7 +16,14 @@
     <main class="flex-grow container mx-auto px-4 py-5 max-w-3xl">
 
         <div class="p-5 text-white">
-            <img src="{{ asset('storage/' . $producto->image) }}" alt="{{ $producto->title }}" class="w-full h-64 object-cover rounded mb-4 border-0">
+
+            <!-- Imagen pequeña, clicable -->
+            <img 
+                src="{{ asset('storage/' . $producto->image) }}" 
+                alt="{{ $producto->title }}" 
+                class="w-full h-64 object-cover rounded mb-4 border-0 cursor-pointer" 
+                @click="open = true"
+            >
 
             <h2 class="text-2xl font-bold mb-2">{{ $producto->title }}</h2>
 
@@ -44,6 +52,29 @@
         </div>
 
     </main>
+
+    <!-- Modal imagen zoom -->
+    <div 
+        x-show="open" 
+        class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+        @click.away="open = false"
+        style="display: none;"
+    >
+        <div class="relative">
+            <!-- Botón cerrar -->
+            <button 
+                @click="open = false" 
+                class="absolute top-2 right-2 text-white text-3xl font-bold hover:text-gray-300 focus:outline-none"
+                aria-label="Cerrar"
+            >&times;</button>
+
+            <img 
+                src="{{ asset('storage/' . $producto->image) }}" 
+                alt="{{ $producto->title }}" 
+                class="max-w-[90vw] max-h-[90vh] object-contain rounded shadow-lg"
+            >
+        </div>
+    </div>
 
 </body>
 </html>
