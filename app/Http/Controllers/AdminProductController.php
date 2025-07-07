@@ -33,7 +33,7 @@ class AdminProductController extends Controller
             abort(403, 'No autorizado.');
         }
 
-        $producto = Product::with('usuario')->findOrFail($id);
+        $producto = Product::with(['usuario', 'categoria'])->findOrFail($id);
         return view('admin.productshow', compact('producto'));
     }
 

@@ -33,4 +33,9 @@ class Product extends Model
         // Aquí 'user' es la columna en productos que referencia a users.id
         return $this->belongsTo(User::class, 'user');
     }
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'categoria_id');
+    }
 }
