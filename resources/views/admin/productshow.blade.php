@@ -10,7 +10,7 @@
 <body class="min-h-screen flex flex-col bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
 
     <header class="p-3">
-        <h1 class="text-3xl font-bold text-center text-white">Detalle del Producto</h1>
+        <h1 class="text-3xl font-bold text-center text-white">Detalle del producto</h1>
     </header>
 
     <main class="flex-grow container mx-auto px-4 py-5 max-w-3xl">
@@ -29,7 +29,7 @@
 
             <ul class="mb-6 space-y-1">
                 <li><strong>Descripción:</strong> {{ $producto->description }}</li>
-                <li><strong>Estado:</strong> <span class="capitalize">{{ $producto->estado }}</span></li>
+                <li><strong>Estado:</strong> {{ $producto->estado }}</li>
                 <li><strong>Categoría:</strong> {{ $producto->categoria->nombre ?? 'Sin categoría' }}</li>
                 <li><strong>Tipo de Transacción:</strong> <span class="capitalize">{{ $producto->transaction_type }}</span></li>
                 <li><strong>Ubicación:</strong> {{ $producto->location }}</li>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Resolver Denuncia #{{ $denuncia->id }}</title>
+    <title>Resolver denuncia {{ $denuncia->id }}</title>
     <style>
         body.bg-gradient {
             font-family: Arial, sans-serif;
@@ -154,7 +154,7 @@
 </head>
 <body class="bg-gradient">
     <div class="container">
-        <h1>Resolver Denuncia #{{ $denuncia->id }}</h1>
+        <h1>Resolver denuncia {{ $denuncia->id }}</h1>
 
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
@@ -164,7 +164,7 @@
         @endif
 
         <div class="card">
-            <div class="card-header">Detalles de la Denuncia</div>
+            <div class="card-header">Detalles de la denuncia</div>
             <div class="card-body">
                 <p><strong>Denunciante:</strong> {{ $denuncia->denunciante->name ?? 'N/A' }}</p>
                 <p><strong>Denunciado:</strong> {{ $denuncia->denunciado->name ?? 'N/A' }}</p>
@@ -193,7 +193,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Resolver Denuncia</button>
+            <button type="submit" class="btn btn-primary">Resolver denuncia</button>
             <a href="{{ route('admin.denuncias.activas') }}" class="btn btn-secondary">Volver</a>
         </form>
     </div>

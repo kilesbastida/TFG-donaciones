@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lista de Productos (Admin)</title>
+    <title>Lista de productos (Admin)</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen flex flex-col bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
 
     <header class="p-4">
-        <h1 class="text-3xl font-bold text-center text-white">Lista de Productos</h1>
+        <h1 class="text-3xl font-bold text-center text-white">Lista de productos</h1>
     </header>
 
     <main class="flex-grow overflow-y-auto container mx-auto px-4 py-6">
@@ -63,7 +63,7 @@
     <footer class="bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 shadow p-4 sticky bottom-0 z-50">
         <div class="max-w-xl mx-auto flex justify-center space-x-4">
             <a href="{{ route('admin.panel') }}" class="bg-gray-700 bg-opacity-80 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
-                Volver al Panel
+                Volver al panel
             </a>
         </div>
     </footer>

@@ -21,7 +21,7 @@ class DenunciaController extends Controller
     public function guardarProducto(Request $request, $productoId)
     {
         $request->validate([
-            'razon' => 'required|in:contenido_inapropiado,fraude,acoso,otro',
+            'razon' => 'required|in:Contenido inapropiado,Fraude,Acoso,Otro',
             'descripcion' => 'required|string|max:2000',
         ]);
 
@@ -50,7 +50,7 @@ class DenunciaController extends Controller
     public function guardarUsuario(Request $request, $usuarioId)
     {
         $request->validate([
-            'razon' => 'required|in:contenido_inapropiado,fraude,acoso,otro',
+            'razon' => 'required|in:Contenido inapropiado,Fraude,Acoso,Otro',
             'descripcion' => 'required|string|max:2000',
         ]);
 

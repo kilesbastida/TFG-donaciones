@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gestión de Usuarios</title>
+  <title>Gestión de usuarios</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-['Roboto'] min-h-screen p-6">
@@ -19,7 +19,7 @@
   @endif
 
   <div class="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-6 text-gray-800">
-    <h1 class="text-3xl font-bold mb-6 text-center">Gestión de Usuarios</h1>
+    <h1 class="text-3xl font-bold mb-6 text-center">Gestión de usuarios</h1>
 
     <table class="min-w-full border-collapse border border-gray-300">
       <thead>
@@ -56,7 +56,7 @@
 
   <div class="max-w-6xl mx-auto mt-6 text-center">
     <a href="{{ route('admin.panel') }}" class="inline-block bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
-      Volver al Panel
+      Volver al panel
     </a>
   </div>
 

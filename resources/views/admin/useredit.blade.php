@@ -19,7 +19,7 @@
   @endif
 
   <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-lg text-gray-800">
-    <h2 class="text-3xl font-bold mb-6 text-center">Editar Usuario</h2>
+    <h2 class="text-3xl font-bold mb-6 text-center">Editar usuario</h2>
 
     <form method="POST" action="{{ route('admin.userlist.update', $user->id) }}">
       @csrf
@@ -68,7 +68,7 @@
           type="submit"
           class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300"
         >
-          Guardar Cambios
+          Guardar cambios
         </button>
         <a
           href="{{ route('admin.userlist') }}"

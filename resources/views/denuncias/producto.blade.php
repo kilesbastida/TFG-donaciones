@@ -9,7 +9,7 @@
 <body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen flex flex-col">
 
 <header class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-4">
-    <h1 class="text-2xl font-bold text-center text-white">Denunciar Producto: {{ $producto->title }}</h1>
+    <h1 class="text-2xl font-bold text-center text-white">Denunciar producto: {{ $producto->title }}</h1>
 </header>
 
 <main class="flex-grow container mx-auto px-4 py-8">
@@ -21,10 +21,10 @@
             <select name="razon" required
                     class="w-full mb-4 border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500">
                 <option value="" disabled selected>Selecciona una razón</option>
-                <option value="contenido_inapropiado">Contenido inapropiado</option>
-                <option value="fraude">Fraude</option>
-                <option value="acoso">Acoso</option>
-                <option value="otro">Otro</option>
+                <option value="Contenido inapropiado">Contenido inapropiado</option>
+                <option value="Fraude">Fraude</option>
+                <option value="Acoso">Acoso</option>
+                <option value="Otro">Otro</option>
             </select>
 
             <label class="block mb-2 font-semibold text-gray-700">Descripción:</label>
