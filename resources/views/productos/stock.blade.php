@@ -23,8 +23,10 @@
                 </a>
 
                 @if(request()->hasAny(['title', 'location', 'estado', 'transaction_type']))
-                    <a href="{{ route('productos.stock') }}" class="text-red-300 hover:text-red-500 font-bold text-lg ml-1" title="Eliminar filtros">
-                        &times;
+                    <a href="{{ route('productos.stock') }}" title="Eliminar filtros" class="text-white hover:text-gray-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
                     </a>
                 @endif
             </div>
@@ -60,7 +62,7 @@
     <footer class="shadow p-4 sticky bottom-0 z-50 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
         <div class="max-w-xl mx-auto flex justify-center space-x-4">
             <a href="{{ route('productos.create') }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
-                Añadir Producto
+                Añadir producto
             </a>
             <a href="{{ route('productos.personales') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
                 Ver mis productos

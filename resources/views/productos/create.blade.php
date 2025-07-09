@@ -49,9 +49,9 @@
       <div class="mb-4">
         <label for="estado" class="block text-gray-700 font-semibold mb-1">Estado</label>
         <select name="estado" id="estado" class="w-full border border-gray-300 rounded px-3 py-2" required>
-          <option value="nuevo">Nuevo</option>
-          <option value="buen_estado">Buen estado</option>
-          <option value="lo_ha_dado_todo">Lo ha dado todo</option>
+          <option value="Nuevo">Nuevo</option>
+          <option value="Buen estado">Buen estado</option>
+          <option value="Lo ha dado todo">Lo ha dado todo</option>
         </select>
       </div>
 

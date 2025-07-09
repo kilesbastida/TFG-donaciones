@@ -17,7 +17,7 @@
         @guest
             <a href="{{ route('login') }}"
                 class="border border-white hover:bg-white hover:text-blue-600 font-semibold py-2 px-4 rounded-lg transition duration-300">
-                Iniciar Sesión
+                Iniciar sesión
             </a>
             <a href="{{ route('register') }}"
                 class="border border-white hover:bg-white hover:text-green-600 font-semibold py-2 px-4 rounded-lg transition duration-300">

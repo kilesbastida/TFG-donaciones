@@ -79,6 +79,6 @@ class ProfileController extends Controller
         // Guardar los cambios
         $user->save();
 
-        return redirect()->route('profile.update')->with('success', 'Perfil actualizado correctamente.');
+        return redirect()->route('home');
     }
 }

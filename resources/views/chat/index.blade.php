@@ -9,7 +9,7 @@
 <body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen flex flex-col">
 
 <header class="p-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-white">
-    <h1 class="text-3xl font-bold text-center">Mis Chats</h1>
+    <h1 class="text-3xl font-bold text-center">Chats</h1>
 </header>
 
 <main class="flex-grow container mx-auto p-4">

@@ -15,7 +15,7 @@
 
     <!-- Formulario de inicio de sesión -->
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Iniciar Sesión</h2>
+        <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Iniciar sesión</h2>
 
         <!-- Mostrar errores de validación -->
         @if ($errors->any())
@@ -34,7 +34,7 @@
 
             <!-- Campo de usuario -->
             <div class="mb-4">
-                <label for="name" class="block text-gray-700 font-semibold">Nombre de Usuario</label>
+                <label for="name" class="block text-gray-700 font-semibold">Nombre de usuario</label>
                 <input type="text" name="name" id="name" value="{{ old('name') }}" ... 
                        class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
                        placeholder="Escribe tu nombre de usuario" required>
@@ -51,7 +51,7 @@
             <!-- Botón de inicio de sesión -->
             <div class="flex items-center justify-between">
                 <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-200">
-                    Iniciar Sesión
+                    Iniciar sesión
                 </button>
             </div>
 

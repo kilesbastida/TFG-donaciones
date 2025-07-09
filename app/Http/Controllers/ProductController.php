@@ -74,7 +74,7 @@ class ProductController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
-            'estado' => 'required|in:nuevo,buen_estado,lo_ha_dado_todo',
+            'estado' => 'required|in:Nuevo,Buen estado,Lo ha dado todo',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'transaction_type' => 'required|in:donacion,intercambio,ambas',
             'location' => ['required', 'string', 'max:255', Rule::in($ciudades)],
@@ -112,7 +112,7 @@ class ProductController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
-            'estado' => 'required|in:nuevo,buen_estado,lo_ha_dado_todo',
+            'estado' => 'required|in:Nuevo,Buen estado,Lo ha dado todo',
             'transaction_type' => 'required|in:donacion,intercambio,ambas',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'location' => ['required', 'string', 'max:255', Rule::in($ciudades)],

@@ -10,11 +10,11 @@
 <div class="max-w-6xl mx-auto">
     <div class="relative flex items-center justify-center mb-6">
         <h1 class="text-3xl font-bold text-white absolute left-1/2 transform -translate-x-1/2">
-            Mis Productos
+            Mis productos
         </h1>
         <a href="{{ route('productos.stock') }}"
         class="ml-auto bg-gray-800 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded shadow">
-            Volver al Catálogo
+            Volver al catálogo
         </a>
     </div>
 
@@ -38,9 +38,9 @@
                          class="w-full h-48 object-cover rounded mb-4">
                     <h2 class="text-xl font-bold text-gray-800 mb-2">{{ $producto->title }}</h2>
                     <p class="text-gray-600 mb-1"><strong>Descripción:</strong> {{ $producto->description }}</p>
-                    <p class="text-gray-600 mb-1"><strong>Estado:</strong> <span class="capitalize">{{ $producto->estado }}</span></p>
+                    <p class="text-gray-600 mb-1"><strong>Estado:</strong> {{ $producto->estado }}</p>
                     <p class="text-gray-600 mb-1"><strong>Categoría:</strong> {{ $producto->categoria->nombre ?? 'Sin categoría' }}</p>
-                    <p class="text-gray-600 mb-1"><strong>Tipo de Transacción:</strong> <span class="capitalize">{{ $producto->transaction_type }}</span></p>
+                    <p class="text-gray-600 mb-1"><strong>Tipo de transacción:</strong> <span class="capitalize">{{ $producto->transaction_type }}</span></p>
                     <p class="text-gray-600 mb-4"><strong>Ubicación:</strong> {{ $producto->location }}</p>
 
                     <div class="flex justify-between items-center">

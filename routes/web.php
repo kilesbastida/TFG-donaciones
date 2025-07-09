@@ -56,7 +56,12 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/productlist/{id}', [AdminProductController::class, 'destroy'])->name('admin.productlist.destroy'); //Eliminar el producto de BBDD
 
     // Gestión de Productos: vista de selección (activas o historial), listado activas, ver y resolver, listado historial
-    Route::get('/admin/denuncias', function() { return view('admin.denuncias');})->name('admin.denuncias'); //Vista de selección (activas o historial)
+    Route::get('/admin/denuncias', function() {
+        if (Auth::check() && Auth::user()->admin) {
+        return view('admin.denuncias');
+        }
+        abort(403, 'Acceso denegado');
+    })->name('admin.denuncias'); //Vista de selección (activas o historial)
     Route::get('/admin/denuncias/activas', [AdminDenunciasController::class, 'activas'])->name('admin.denuncias.activas'); //Listado de activas
     Route::get('/admin/denuncias/historial', [AdminDenunciasController::class, 'historial'])->name('admin.denuncias.historial'); //Listado de denuncias resueltas
     Route::get('/admin/denuncias/{id}', [AdminDenunciasController::class, 'showDenuncia'])->name('admin.denuncias.show'); //Ver detalles de la denuncia activa

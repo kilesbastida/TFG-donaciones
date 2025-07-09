@@ -11,7 +11,7 @@
 
     <div class="max-w-6xl mx-auto bg-white p-8 rounded-lg shadow-lg flex-grow overflow-y-auto relative z-10">
 
-        <h1 class="text-3xl font-bold mb-6 text-gray-800 text-center">Mis Solicitudes</h1>
+        <h1 class="text-3xl font-bold mb-6 text-gray-800 text-center">Mis solicitudes</h1>
 
         {{-- Mensajes de sesión --}}
         @if(session('success'))

@@ -24,9 +24,9 @@
             <h2 class="text-2xl font-bold mb-2 text-gray-800">{{ $producto->title }}</h2>
 
             <p class="text-sm text-gray-600 mb-2"><strong>Descripción:</strong> {{ $producto->description }}</p>
-            <p class="text-sm text-gray-600 mb-2"><strong>Estado:</strong> <span class="capitalize">{{ $producto->estado }}</span></p>
+            <p class="text-sm text-gray-600 mb-2"><strong>Estado:</strong> {{ $producto->estado }}</p>
             <p class="text-sm text-gray-600 mb-2"><strong>Categoría:</strong> {{ $producto->categoria->nombre ?? 'Sin categoría' }}</p>
-            <p class="text-sm text-gray-600 mb-2"><strong>Tipo de Transacción:</strong> <span class="capitalize">{{ $producto->transaction_type }}</span></p>
+            <p class="text-sm text-gray-600 mb-2"><strong>Tipo de transacción:</strong> <span class="capitalize">{{ $producto->transaction_type }}</span></p>
             <p class="text-sm text-gray-600 mb-2"><strong>Ubicación:</strong> {{ $producto->location }}</p>
             <p class="text-sm text-gray-600 mb-4"><strong>Publicado por:</strong> {{ $producto->usuario->name ?? 'Usuario desconocido' }}</p>
 

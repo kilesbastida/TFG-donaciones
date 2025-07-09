@@ -70,7 +70,7 @@
                         <select name="location" id="location" class="w-full border border-gray-300 rounded px-3 py-2" required>
                         <option value="">Seleccionar ciudad</option>
                         @foreach($ciudades as $ciudad)
-                            <option value="{{ $ciudad }}" @if(Auth::user()->location == $ciudad) selected @endif>{{ $ciudad }}</option>
+                            <option value="{{ $ciudad }}">{{ $ciudad }}</option>
                         @endforeach
                         </select>
                     </div>

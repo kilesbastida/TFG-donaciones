@@ -65,7 +65,7 @@ class DenunciaController extends Controller
             'estado' => 'pendiente',
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('chat.show',['userId' => $usuario->id]);
     }
 
     // Aquí podrías agregar métodos para listar denuncias y que el admin pueda resolverlas, etc.

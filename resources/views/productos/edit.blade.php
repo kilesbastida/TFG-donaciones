@@ -54,9 +54,9 @@
       <div class="mb-4">
         <label for="estado" class="block text-gray-700 font-semibold mb-1">Estado</label>
         <select name="estado" id="estado" class="w-full border border-gray-300 rounded px-3 py-2" required>
-          <option value="nuevo" {{ old('estado', $producto->estado) == 'nuevo' ? 'selected' : '' }}>Nuevo</option>
-          <option value="buen_estado" {{ old('estado', $producto->estado) == 'buen_estado' ? 'selected' : '' }}>Buen estado</option>
-          <option value="lo_ha_dado_todo" {{ old('estado', $producto->estado) == 'lo_ha_dado_todo' ? 'selected' : '' }}>Lo ha dado todo</option>
+          <option value="Nuevo" {{ old('estado', $producto->estado) == 'Nuevo' ? 'selected' : '' }}>Nuevo</option>
+          <option value="Buen estado" {{ old('estado', $producto->estado) == 'Buen estado' ? 'selected' : '' }}>Buen estado</option>
+          <option value="Lo ha dado todo" {{ old('estado', $producto->estado) == 'Lo ha dado todo' ? 'selected' : '' }}>Lo ha dado todo</option>
         </select>
         @error('estado') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
       </div>

@@ -9,11 +9,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen flex items-center justify-center">
+<body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen flex justify-center pt-6 pb-6">
 
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md relative">
         <div class="relative mb-6 pb-2">
-            <h2 class="text-2xl font-bold text-gray-800 text-center">Buscar Productos</h2>
+            <h2 class="text-2xl font-bold text-gray-800 text-center">Buscar productos</h2>
 
             <button id="btn-reiniciar"
                 class="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition"
@@ -43,9 +43,9 @@
                 <select name="estado" id="estado"
                     class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
                     <option value="">Todos</option>
-                    <option value="nuevo" {{ ($filtros['estado'] ?? '') === 'nuevo' ? 'selected' : '' }}>Nuevo</option>
-                    <option value="buen_estado" {{ ($filtros['estado'] ?? '') === 'buen_estado' ? 'selected' : '' }}>Buen estado</option>
-                    <option value="lo_ha_dado_todo" {{ ($filtros['estado'] ?? '') === 'lo_ha_dado_todo' ? 'selected' : '' }}>Lo ha dado todo</option>
+                    <option value="Nuevo" {{ ($filtros['estado'] ?? '') === 'Nuevo' ? 'selected' : '' }}>Nuevo</option>
+                    <option value="Buen estado" {{ ($filtros['estado'] ?? '') === 'Buen estado' ? 'selected' : '' }}>Buen estado</option>
+                    <option value="Lo ha dado todo" {{ ($filtros['estado'] ?? '') === 'Lo ha dado todo' ? 'selected' : '' }}>Lo ha dado todo</option>
                 </select>
             </div>
 
