@@ -16,7 +16,7 @@
 
             <!-- Íconos flotantes a la derecha -->
             <div class="absolute right-0 flex items-center space-x-2">
-                <a href="{{ route('productos.buscar') }}" title="Buscar productos" class="text-white hover:text-gray-200">
+                <a href="{{ route('productos.buscar', request()->only(['title', 'location', 'estado', 'transaction_type'])) }}" title="Buscar productos" class="text-white hover:text-gray-200">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
                     </svg>

@@ -15,15 +15,15 @@ class ProfileController extends Controller
     public function perfil()
     {
         $user = Auth::user();
-        $cities = include resource_path('cities.php');  // cargar array de ciudades
-        return view('profile.perfil', compact('user', 'cities'));
+        $ciudades = include resource_path('cities.php');  // cargar array de ciudades
+        return view('profile.perfil', compact('user', 'ciudades'));
     }
 
     // Actualizar el perfil
     public function update(Request $request)
     {
         $user = Auth::user();
-        $cities = include resource_path('cities.php'); 
+        $ciudades = include resource_path('cities.php'); 
         // Validación de los datos
         $request->validate([
             'name' => ['required', 'string', 'max:255', Rule::unique('users', 'name')->ignore($user->id)],
@@ -31,7 +31,7 @@ class ProfileController extends Controller
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             'avatar' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'phone' => ['required', 'digits:9', Rule::unique('users', 'phone')->ignore($user->id)],
-            'location' => ['required', 'string', 'max:255', Rule::in($cities)],
+            'location' => ['required', 'string', 'max:255', Rule::in($ciudades)],
             'transaction_type' => ['nullable', 'in:donacion,intercambio,ambas'],
         ], [
             'name.required' => 'El nombre es obligatorio.',

@@ -15,14 +15,14 @@
         <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Buscar Productos</h2>
 
         <form action="{{ route('productos.stock') }}" method="GET">
-            @csrf
 
             <!-- Filtro por título -->
             <div class="mb-4">
                 <label for="title" class="block text-gray-700 font-semibold">Título</label>
                 <input type="text" name="title" id="title"
                        class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="Escribe el título del producto">
+                       placeholder="Escribe el título del producto"
+                       value="{{ $filtros['title'] ?? '' }}">
             </div>
 
             <!-- Filtro por estado -->
@@ -31,9 +31,9 @@
                 <select name="estado" id="estado"
                         class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">Todos</option>
-                    <option value="nuevo">Nuevo</option>
-                    <option value="buen_estado">Buen estado</option>
-                    <option value="lo_ha_dado_todo">Lo ha dado todo</option>
+                    <option value="nuevo" {{ ($filtros['estado'] ?? '') === 'nuevo' ? 'selected' : '' }}>Nuevo</option>
+                    <option value="buen_estado" {{ ($filtros['estado'] ?? '') === 'buen_estado' ? 'selected' : '' }}>Buen estado</option>
+                    <option value="lo_ha_dado_todo" {{ ($filtros['estado'] ?? '') === 'lo_ha_dado_todo' ? 'selected' : '' }}>Lo ha dado todo</option>
                 </select>
             </div>
 
@@ -43,25 +43,24 @@
                 <select name="transaction_type" id="transaction_type"
                         class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">Todas</option>
-                    <option value="donacion">Donación</option>
-                    <option value="intercambio">Intercambio</option>
-                    <option value="ambas">Ambas</option>
+                    <option value="donacion" {{ ($filtros['transaction_type'] ?? '') === 'donacion' ? 'selected' : '' }}>Donación</option>
+                    <option value="intercambio" {{ ($filtros['transaction_type'] ?? '') === 'intercambio' ? 'selected' : '' }}>Intercambio</option>
+                    <option value="ambas" {{ ($filtros['transaction_type'] ?? '') === 'ambas' ? 'selected' : '' }}>Ambas</option>
                 </select>
             </div>
 
             <!-- Filtro por ciudad -->
-            <div class="mb-6">
-                <label for="location" class="block text-gray-700 font-semibold">Ciudad</label>
-                <input type="text" list="cities" name="location" id="location" value="{{ request('location') }}"
-                    class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Escribe la ciudad">
-                <datalist id="cities">
-                    @foreach ($ciudades as $city)
-                        <option value="{{ $city }}"></option>
+            <div class="mb-4">
+                <label for="location" class="block text-gray-700 font-semibold mb-1">Ciudad</label>
+                <select name="location" id="location" class="w-full border border-gray-300 rounded px-3 py-2">
+                    <option value="">Seleccionar ciudad</option>
+                    @foreach($ciudades as $ciudad)
+                        <option value="{{ $ciudad }}" {{ ($filtros['location'] ?? '') === $ciudad ? 'selected' : '' }}>
+                            {{ $ciudad }}
+                        </option>
                     @endforeach
-                </datalist>
+                </select>
             </div>
-
 
             <!-- Botón de búsqueda -->
             <div class="mb-4">

@@ -86,25 +86,14 @@
         </div>
 
         <!-- Ubicación -->
-        <div>
-          <label for="location" class="block font-semibold text-gray-700 mb-1">Ubicación</label>
-          <input 
-            type="text" 
-            name="location" 
-            id="location" 
-            value="{{ old('location', Auth::user()->location) }}"
-            list="cities"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400">
-          
-          <datalist id="cities">
-            @foreach ($cities as $city)
-              <option value="{{ $city }}"></option>
+        <div class="mb-4">
+          <label for="location" class="block text-gray-700 font-semibold mb-1">Ciudad</label>
+          <select name="location" id="location" class="w-full border border-gray-300 rounded px-3 py-2" required>
+            <option value="">Seleccionar ciudad</option>
+            @foreach($ciudades as $ciudad)
+              <option value="{{ $ciudad }}" @if(Auth::user()->location == $ciudad) selected @endif>{{ $ciudad }}</option>
             @endforeach
-          </datalist>
-
-          @error('location') 
-            <p class="text-red-500 text-sm mt-1">{{ $message }}</p> 
-          @enderror
+          </select>
         </div>
 
       </div>
