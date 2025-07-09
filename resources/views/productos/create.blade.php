@@ -60,9 +60,11 @@
         <label for="category_id" class="block text-gray-700 font-semibold mb-1">Categoría</label>
         <select name="categoria_id" id="categoria_id" class="w-full border border-gray-300 rounded px-3 py-2" required>
           <option value="">Seleccionar categoría</option>
-          @foreach($categorias as $id => $nombre)
-            <option value="{{ $id }}">{{ $nombre }}</option>
-          @endforeach
+          @foreach($categorias as $categoria)
+            <option value="{{ $categoria->id }}">
+                {{ $categoria->nombre }}
+            </option>
+        @endforeach
         </select>
       </div>
 
