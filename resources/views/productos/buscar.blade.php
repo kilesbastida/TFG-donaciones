@@ -2,38 +2,60 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Buscar Productos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 h-screen flex items-center justify-center">
 
-    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Buscar Productos</h2>
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md relative">
+        <!-- Contenedor flex para título + botón reiniciar -->
+        <div class="relative mb-6 pb-2">
+            <!-- Título centrado -->
+            <h2 class="text-2xl font-bold text-gray-800 text-center">Buscar Productos</h2>
 
-        <form action="{{ route('productos.stock') }}" method="GET">
+            <!-- Botón reiniciar filtros posicionado a la derecha -->
+            <button
+                id="btn-reiniciar"
+                title="Reiniciar filtros"
+                aria-label="Reiniciar filtros"
+                class="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-gray-300 hover:bg-gray-400 transition duration-200 focus:outline-none"
+                type="button"
+            >
+                <!-- Icono dos flechas formando círculo -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h5M20 20v-5h-5" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 9a8 8 0 0113.657-3.657M20 15a8 8 0 01-13.657 3.657" />
+                </svg>
+            </button>
+        </div>
+
+        <form action="{{ route('productos.stock') }}" method="GET" id="form-busqueda">
 
             <!-- Filtro por título -->
             <div class="mb-4">
                 <label for="title" class="block text-gray-700 font-semibold">Título</label>
                 <input type="text" name="title" id="title"
-                       class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="Escribe el título del producto"
-                       value="{{ $filtros['title'] ?? '' }}">
+                    class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Escribe el título del producto" value="{{ $filtros['title'] ?? '' }}">
             </div>
 
             <!-- Filtro por estado -->
             <div class="mb-4">
                 <label for="estado" class="block text-gray-700 font-semibold">Estado</label>
                 <select name="estado" id="estado"
-                        class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">Todos</option>
-                    <option value="nuevo" {{ ($filtros['estado'] ?? '') === 'nuevo' ? 'selected' : '' }}>Nuevo</option>
-                    <option value="buen_estado" {{ ($filtros['estado'] ?? '') === 'buen_estado' ? 'selected' : '' }}>Buen estado</option>
-                    <option value="lo_ha_dado_todo" {{ ($filtros['estado'] ?? '') === 'lo_ha_dado_todo' ? 'selected' : '' }}>Lo ha dado todo</option>
+                    <option value="nuevo" {{ ($filtros['estado'] ?? '') === 'nuevo' ? 'selected' : '' }}>Nuevo
+                    </option>
+                    <option value="buen_estado" {{ ($filtros['estado'] ?? '') === 'buen_estado' ? 'selected' : '' }}>
+                        Buen estado</option>
+                    <option value="lo_ha_dado_todo"
+                        {{ ($filtros['estado'] ?? '') === 'lo_ha_dado_todo' ? 'selected' : '' }}>Lo ha dado todo
+                    </option>
                 </select>
             </div>
 
@@ -41,11 +63,15 @@
             <div class="mb-4">
                 <label for="transaction_type" class="block text-gray-700 font-semibold">Tipo de transacción</label>
                 <select name="transaction_type" id="transaction_type"
-                        class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">Todas</option>
-                    <option value="donacion" {{ ($filtros['transaction_type'] ?? '') === 'donacion' ? 'selected' : '' }}>Donación</option>
-                    <option value="intercambio" {{ ($filtros['transaction_type'] ?? '') === 'intercambio' ? 'selected' : '' }}>Intercambio</option>
-                    <option value="ambas" {{ ($filtros['transaction_type'] ?? '') === 'ambas' ? 'selected' : '' }}>Ambas</option>
+                    <option value="donacion"
+                        {{ ($filtros['transaction_type'] ?? '') === 'donacion' ? 'selected' : '' }}>Donación</option>
+                    <option value="intercambio"
+                        {{ ($filtros['transaction_type'] ?? '') === 'intercambio' ? 'selected' : '' }}>Intercambio
+                    </option>
+                    <option value="ambas" {{ ($filtros['transaction_type'] ?? '') === 'ambas' ? 'selected' : '' }}>
+                        Ambas</option>
                 </select>
             </div>
 
@@ -55,7 +81,8 @@
                 <select name="location" id="location" class="w-full border border-gray-300 rounded px-3 py-2">
                     <option value="">Seleccionar ciudad</option>
                     @foreach($ciudades as $ciudad)
-                        <option value="{{ $ciudad }}" {{ ($filtros['location'] ?? '') === $ciudad ? 'selected' : '' }}>
+                        <option value="{{ $ciudad }}"
+                            {{ ($filtros['location'] ?? '') === $ciudad ? 'selected' : '' }}>
                             {{ $ciudad }}
                         </option>
                     @endforeach
@@ -65,7 +92,7 @@
             <!-- Botón de búsqueda -->
             <div class="mb-4">
                 <button type="submit"
-                        class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-200">
+                    class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-200">
                     Filtrar
                 </button>
             </div>
@@ -73,10 +100,24 @@
 
         <!-- Botón de volver al stock -->
         <a href="{{ route('productos.stock') }}"
-           class="block w-full bg-red-600 hover:bg-red-700 text-white text-center font-bold py-2 px-4 rounded-md transition duration-200">
+            class="block w-full bg-red-600 hover:bg-red-700 text-white text-center font-bold py-2 px-4 rounded-md transition duration-200">
             Cancelar
         </a>
     </div>
+
+    <script>
+        // Botón reiniciar filtros
+        document.getElementById('btn-reiniciar').addEventListener('click', () => {
+            // Limpia todos los inputs y selects
+            document.getElementById('title').value = '';
+            document.getElementById('estado').selectedIndex = 0;
+            document.getElementById('transaction_type').selectedIndex = 0;
+            document.getElementById('location').selectedIndex = 0;
+
+            // Recarga la página de buscar sin filtros
+            window.location.href = "{{ route('productos.buscar') }}";
+        });
+    </script>
 
 </body>
 
