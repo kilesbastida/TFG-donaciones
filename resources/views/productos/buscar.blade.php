@@ -67,9 +67,7 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @if($i > 0)
-                                <button type="button" class="remove-categoria text-red-600 text-xl font-bold">&minus;</button>
-                            @endif
+                            <button type="button" class="remove-categoria text-red-600 text-xl font-bold">&minus;</button>
                         </div>
                     @endforeach
                 </div>
@@ -107,9 +105,7 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @if($i > 0)
-                                <button type="button" class="remove-ciudad text-red-600 text-xl font-bold">&minus;</button>
-                            @endif
+                            <button type="button" class="remove-ciudad text-red-600 text-xl font-bold">&minus;</button>
                         </div>
                     @endforeach
                 </div>
@@ -161,6 +157,9 @@
                 const items = document.querySelectorAll('.categoria-item');
                 if (items.length > 1) {
                     e.target.closest('.categoria-item').remove();
+                } else {
+                    // Opcional: alerta o feedback visual
+                    alert("Debe quedar al menos una categoría.");
                 }
             }
         });
@@ -189,9 +188,12 @@
                 const items = document.querySelectorAll('.ciudad-item');
                 if (items.length > 1) {
                     e.target.closest('.ciudad-item').remove();
+                } else {
+                    alert("Debe quedar al menos una ciudad.");
                 }
             }
         });
+        
     </script>
 </body>
 </html>
