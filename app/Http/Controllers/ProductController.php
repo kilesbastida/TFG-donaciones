@@ -108,13 +108,15 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $producto = Product::where('id', $id)->where('user', Auth::id())->firstOrFail();
-
+        $ciudades = include resource_path('cities.php');
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
             'estado' => 'required|in:nuevo,buen_estado,lo_ha_dado_todo',
             'transaction_type' => 'required|in:donacion,intercambio,ambas',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'location' => ['required', 'string', 'max:255', Rule::in($ciudades)],
+            'categoria_id' => ['required', 'integer', Rule::exists('categorias', 'id')],
         ]);
 
         if ($request->hasFile('image')) {
@@ -127,6 +129,7 @@ class ProductController extends Controller
         $producto->estado = $request->estado;
         $producto->categoria_id = $request->categoria_id;
         $producto->transaction_type = $request->transaction_type;
+        $producto->location = $request->location;
         $producto->save();
 
         return redirect()->route('productos.personales');
