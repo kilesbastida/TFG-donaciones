@@ -20,6 +20,7 @@ class Product extends Model
         'title',
         'description',
         'estado',
+        'categoria_id',
         'transaction_type',
         'location',
         'image',

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\Categoria;
+use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
@@ -18,8 +19,14 @@ class ProductController extends Controller
         }
 
         if ($request->filled('location')) {
-            $query->where('location', 'LIKE', '%' . $request->location . '%');
+            $locations = (array) $request->location;
+
+            if (!in_array('all', $locations)) {
+                $query->whereIn('location', $locations);
+            }
+            // Si 'all' está en las ubicaciones, no aplicar filtro por ubicación.
         }
+
 
         if ($request->filled('estado')) {
             $query->where('estado', $request->estado);
@@ -27,6 +34,14 @@ class ProductController extends Controller
 
         if ($request->filled('transaction_type')) {
             $query->where('transaction_type', $request->transaction_type);
+        }
+
+        if ($request->filled('categoria')) {
+            $categorias = (array) $request->categoria;
+
+            if (!in_array('all', $categorias)) {
+                $query->whereIn('categoria_id', $categorias);
+            }
         }
 
         $productos = $query->latest()->get();
@@ -48,13 +63,14 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categorias = Categoria::orderBy('nombre')->pluck('nombre', 'id');
+        $categorias = Categoria::orderBy('nombre')->get();
         $ciudades = include resource_path('cities.php');
         return view('productos.create', compact('categorias', 'ciudades'));
     }
 
     public function store(Request $request)
     {
+        $ciudades = include resource_path('cities.php');
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
@@ -62,6 +78,7 @@ class ProductController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'transaction_type' => 'required|in:donacion,intercambio,ambas',
             'location' => ['required', 'string', 'max:255', Rule::in($ciudades)],
+            'categoria_id' => ['required', 'integer', Rule::exists('categorias', 'id')],
         ]);
 
         $path = $request->file('image')->store('product_images', 'public');
@@ -82,7 +99,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $categorias = Categoria::orderBy('nombre')->pluck('nombre', 'id');
+        $categorias = Categoria::orderBy('nombre')->get();
         $ciudades = include resource_path('cities.php');
         $producto = Product::where('id', $id)->where('user', Auth::id())->firstOrFail();
         return view('productos.edit', compact('producto','categorias','ciudades'));
@@ -126,9 +143,11 @@ class ProductController extends Controller
     public function buscar(Request $request)
     {
         $ciudades = include resource_path('cities.php');
+        $categorias = Categoria::orderBy('nombre')->get();
         return view('productos.buscar', [
         'ciudades' => $ciudades,
-        'filtros' => $request->only(['title', 'location', 'estado', 'transaction_type']),
+        'categorias' => $categorias,
+        'filtros' => $request->only(['title', 'location', 'estado', 'transaction_type','categoria']),
         ]);
     }
 }

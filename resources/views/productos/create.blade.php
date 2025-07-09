@@ -58,7 +58,7 @@
       <!-- Categoria -->
       <div class="mb-4">
         <label for="category_id" class="block text-gray-700 font-semibold mb-1">Categoría</label>
-        <select name="category_id" id="category_id" class="w-full border border-gray-300 rounded px-3 py-2" required>
+        <select name="categoria_id" id="categoria_id" class="w-full border border-gray-300 rounded px-3 py-2" required>
           <option value="">Seleccionar categoría</option>
           @foreach($categorias as $id => $nombre)
             <option value="{{ $id }}">{{ $nombre }}</option>
@@ -82,7 +82,7 @@
         <select name="location" id="location" class="w-full border border-gray-300 rounded px-3 py-2" required>
           <option value="">Seleccionar ciudad</option>
           @foreach($ciudades as $ciudad)
-            <option value="{{ $ciudad }}" @if(Auth::user()->location == $ciudad) selected @endif>{{ $ciudad }}</option>
+            <option value="{{ $ciudad }}" {{ old('location', Auth::user()->location) == $ciudad ? 'selected' : '' }}>{{ $ciudad }}</option>
           @endforeach
         </select>
       </div>
