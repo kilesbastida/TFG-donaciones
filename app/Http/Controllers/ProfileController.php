@@ -27,8 +27,8 @@ class ProfileController extends Controller
         // Validación de los datos
         $request->validate([
             'name' => ['required', 'string', 'max:255', Rule::unique('users', 'name')->ignore($user->id)],
-            'email' => ['required', 'string', 'email', 'max:255', 'regex:/@gmail\.com$/', Rule::unique('users', 'email')->ignore($user->id)],
-            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'regex:/@(gmail\.com|hotmail\.com|yahoo\.com|outlook\.com|icloud\.com)$/i', Rule::unique('users', 'email')->ignore($user->id)],
+            'password' => ['nullable', 'string', 'min:5', 'confirmed'],
             'avatar' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'phone' => ['required', 'digits:9', Rule::unique('users', 'phone')->ignore($user->id)],
             'location' => ['required', 'string', 'max:255', Rule::in($ciudades)],
@@ -39,7 +39,7 @@ class ProfileController extends Controller
             'email.required' => 'El correo electrónico es obligatorio.',
             'email.email' => 'El correo debe ser una dirección válida.',
             'email.unique' => 'Este correo ya está en uso.',
-            'email.regex' => 'El correo debe terminar en @gmail.com.',
+            'email.regex' => 'El correo no tiene un formato válido.',
             'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
             'password.confirmed' => 'Las contraseñas no coinciden.',
             'phone.required' => 'El teléfono es obligatorio.',

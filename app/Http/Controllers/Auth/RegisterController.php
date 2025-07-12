@@ -25,8 +25,8 @@ class RegisterController extends Controller
         // Validación de los datos ingresados
         $request->validate([
             'name' => 'required|string|max:255|unique:users,name',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|confirmed|min:8',
+            'email' => ['required','email','unique:users,email','regex:/@(gmail\.com|hotmail\.com|yahoo\.com|outlook\.com|icloud\.com)$/i'],
+            'password' => 'required|string|confirmed|min:5',
             'phone' => 'required|string|max:20',
             'location' => ['required', 'string', 'max:255', Rule::in($ciudades)],
             'transaction_type' => 'required|string|in:donacion,intercambio,ambas',
