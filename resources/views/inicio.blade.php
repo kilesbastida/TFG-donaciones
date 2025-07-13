@@ -25,6 +25,10 @@
             </a>
         @else
             <span class="mr-4">Hola, <strong>{{ Auth::user()->name }}</strong></span>
+            <a href="{{ route('home') }}"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                Acceder
+            </a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit"
