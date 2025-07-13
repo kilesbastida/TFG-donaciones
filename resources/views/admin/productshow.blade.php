@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" x-data="{ open: false }" @keydown.escape="open = false">
+<html lang="es" x-data="{ open: false, deleteModal: false }" @keydown.escape="open = false; deleteModal = false;">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -41,13 +41,13 @@
                     Volver a la lista
                 </a>
 
-                <form action="{{ route('admin.productlist.destroy', $producto->id) }}" method="POST" class="flex-1" onsubmit="return confirm('¿Seguro que quieres eliminar este producto?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
-                        Eliminar producto
-                    </button>
-                </form>
+                <!-- Botón para abrir modal eliminar producto -->
+                <button 
+                    @click="deleteModal = true"
+                    class="flex-1 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
+                >
+                    Eliminar producto
+                </button>
             </div>
         </div>
 
@@ -73,6 +73,33 @@
                 alt="{{ $producto->title }}" 
                 class="max-w-[90vw] max-h-[90vh] object-contain rounded shadow-lg"
             >
+        </div>
+    </div>
+
+    <!-- Modal confirmación eliminar producto -->
+    <div 
+        x-show="deleteModal" 
+        class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
+        style="display: none;"
+    >
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">¿Eliminar producto?</h2>
+            <p class="text-gray-600 mb-6">¿Estás seguro de que quieres eliminar el producto <strong>{{ $producto->title }}</strong>? Esta acción no se puede deshacer.</p>
+            <div class="flex justify-end gap-4">
+                <button 
+                    @click="deleteModal = false" 
+                    class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400"
+                >
+                    Cancelar
+                </button>
+                <form action="{{ route('admin.productlist.destroy', $producto->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="px-4 py-2 rounded bg-red-600 hover:bg-red-700 text-white">
+                        Eliminar
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 
