@@ -9,7 +9,7 @@
 <body class="bg-gradient-to-r from-green-400 via-blue-500 to-red-500 text-white font-['Roboto'] min-h-screen flex flex-col">
 
     <header class="relative py-10 px-10">
-        <h2 class="text-4xl font-bold text-center text-black drop-shadow-lg">Bienvenido al panel de administración</h2>
+        <h2 class="text-4xl font-bold text-center text-black drop-shadow-lg">Panel de administración</h2>
         <a href="{{ route('home') }}"
         class="absolute top-10 right-10 bg-gray-200 text-gray-800 hover:bg-gray-300 font-bold py-2 px-6 rounded-lg text-sm transition duration-300 shadow-md">
             Salir del modo admin
