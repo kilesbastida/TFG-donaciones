@@ -41,13 +41,32 @@
             <td class="border border-gray-300 px-4 py-2 space-x-2">
               <a href="{{ route('admin.userlist.edit', $user->id) }}" class="text-blue-600 hover:underline">Editar</a>
 
-              <form method="POST" action="{{ route('admin.userlist.destroy', $user->id) }}" class="inline" onsubmit="return confirm('¿Eliminar este usuario?');">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="text-red-600 hover:underline">Eliminar</button>
-              </form>
+              <!-- Botón para abrir modal -->
+              <button onclick="openModal({{ $user->id }})" class="text-red-600 hover:underline">
+                Eliminar
+              </button>
             </td>
           </tr>
+
+          <!-- Modal de confirmación -->
+          <div id="modal-{{ $user->id }}" class="fixed inset-0 hidden bg-black bg-opacity-50 z-50 flex items-center justify-center">
+            <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
+              <h2 class="text-xl font-bold text-gray-800 mb-4">¿Eliminar usuario?</h2>
+              <p class="text-gray-600 mb-6">¿Estás seguro de que quieres eliminar al usuario <strong>{{ $user->name }}</strong>? Esta acción no se puede deshacer.</p>
+              <div class="flex justify-end gap-4">
+                <button onclick="closeModal({{ $user->id }})" class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400">
+                  Cancelar
+                </button>
+                <form action="{{ route('admin.userlist.destroy', $user->id) }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="px-4 py-2 rounded bg-red-600 hover:bg-red-700 text-white">
+                    Eliminar
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
         @endforeach
       </tbody>
     </table>
@@ -81,6 +100,14 @@
         }, 1500);
       }
     });
+
+    function openModal(id) {
+      document.getElementById('modal-' + id).classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      document.getElementById('modal-' + id).classList.add('hidden');
+    }
   </script>
 
 </body>
