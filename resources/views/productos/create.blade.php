@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" x-data="{ open: false }">
 <head>
   <meta charset="UTF-8">
   <title>Crear Producto</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen flex items-center justify-center p-6">
 
@@ -25,7 +26,11 @@
 
       <!-- Imagen -->
       <div class="mb-4 text-center">
-        <div id="image-preview" class="w-32 h-32 bg-gray-200 rounded-full mx-auto flex items-center justify-center text-sm text-gray-600 border border-gray-300 overflow-hidden">
+        <div 
+          id="image-preview" 
+          class="w-32 h-32 bg-gray-200 rounded-full mx-auto flex items-center justify-center text-sm text-gray-600 border border-gray-300 overflow-hidden cursor-pointer"
+          @click="open = true"
+        >
           <span>Sin imagen</span>
         </div>
         <label for="image" class="mt-2 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded cursor-pointer">
@@ -64,7 +69,7 @@
             <option value="{{ $categoria->id }}">
                 {{ $categoria->nombre }}
             </option>
-        @endforeach
+          @endforeach
         </select>
       </div>
 
@@ -101,10 +106,35 @@
     </form>
   </div>
 
+  <!-- Modal para imagen grande -->
+  <div 
+    x-show="open" 
+    x-transition 
+    class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+    @click.away="open = false"
+    style="display: none;"
+  >
+    <div class="relative">
+      <button 
+        @click="open = false" 
+        class="absolute top-2 right-2 text-white text-3xl font-bold hover:text-gray-300"
+        aria-label="Cerrar"
+      >&times;</button>
+
+      <img 
+        id="modal-image" 
+        src="" 
+        alt="Imagen seleccionada" 
+        class="max-w-[90vw] max-h-[90vh] object-contain rounded shadow-lg"
+      >
+    </div>
+  </div>
+
   <script>
     function previewImage(event) {
       const file = event.target.files[0];
       const previewContainer = document.getElementById('image-preview');
+      const modalImage = document.getElementById('modal-image');
 
       if (file) {
         const reader = new FileReader();
@@ -114,10 +144,14 @@
           img.src = e.target.result;
           img.className = 'w-full h-full object-cover rounded-full';
           previewContainer.appendChild(img);
+
+          // También actualizamos la imagen del modal para que al abrirlo muestre la imagen seleccionada
+          modalImage.src = e.target.result;
         };
         reader.readAsDataURL(file);
       }
     }
   </script>
+
 </body>
 </html>

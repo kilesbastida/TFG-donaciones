@@ -24,10 +24,13 @@
       @csrf
       @method('PUT')
 
-      <!-- Imagen actual -->
+      <!-- Imagen actual con click para abrir modal -->
       <div class="mb-4 text-center">
-        <div id="image-preview" class="w-32 h-32 bg-gray-200 rounded-full mx-auto flex items-center justify-center border border-gray-300 overflow-hidden">
-          <img src="{{ asset('storage/' . $producto->image) }}" alt="Imagen actual" class="w-full h-full object-cover rounded-full">
+        <div id="image-preview" 
+          class="w-32 h-32 bg-gray-200 rounded-full mx-auto flex items-center justify-center border border-gray-300 overflow-hidden cursor-pointer"
+          onclick="openModal()"
+        >
+          <img src="{{ asset('storage/' . $producto->image) }}" alt="Imagen actual" class="w-full h-full object-cover rounded-full" id="preview-img">
         </div>
         <label for="image" class="mt-2 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded cursor-pointer">
           Cambiar imagen
@@ -36,6 +39,7 @@
         @error('image') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
       </div>
 
+      <!-- Resto del formulario igual -->
       <!-- Título -->
       <div class="mb-4">
         <label for="title" class="block text-gray-700 font-semibold mb-1">Título</label>
@@ -62,17 +66,17 @@
       </div>
 
       <!-- Categoria -->
-    <div class="mb-4">
-    <label for="categoria_id" class="block text-gray-700 font-semibold mb-1">Categoría</label>
-    <select name="categoria_id" id="categoria_id" class="w-full border border-gray-300 rounded px-3 py-2" required>
-        <option value="">Seleccionar categoría</option>
-        @foreach($categorias as $categoria)
+      <div class="mb-4">
+        <label for="categoria_id" class="block text-gray-700 font-semibold mb-1">Categoría</label>
+        <select name="categoria_id" id="categoria_id" class="w-full border border-gray-300 rounded px-3 py-2" required>
+          <option value="">Seleccionar categoría</option>
+          @foreach($categorias as $categoria)
             <option value="{{ $categoria->id }}" {{ $producto->categoria_id == $categoria->id ? 'selected' : '' }}>
-                {{ $categoria->nombre }}
+              {{ $categoria->nombre }}
             </option>
-        @endforeach
-    </select>
-    </div>
+          @endforeach
+        </select>
+      </div>
 
       <!-- Tipo de transacción -->
       <div class="mb-4">
@@ -82,7 +86,6 @@
           <option value="intercambio" {{ old('transaction_type', $producto->transaction_type) == 'intercambio' ? 'selected' : '' }}>Intercambio</option>
           <option value="ambas" {{ old('transaction_type', $producto->transaction_type) == 'ambas' ? 'selected' : '' }}>Ambas</option>
         </select>
-        @error('transaction_type') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
       </div>
 
       <!-- Ciudad -->
@@ -91,10 +94,11 @@
         <select name="location" id="location" class="w-full border border-gray-300 rounded px-3 py-2" required>
           <option value="">Seleccionar ciudad</option>
           @foreach($ciudades as $ciudad)
-            <option value="{{ $ciudad }}" {{ old('location', $producto->location) == $ciudad ? 'selected' : '' }}>{{ $ciudad }}</option>
+            <option value="{{ $ciudad }}" {{ old('location', $producto->location) == $ciudad ? 'selected' : '' }}>
+              {{ $ciudad }}
+            </option>
           @endforeach
         </select>
-        @error('location') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
       </div>
 
       <!-- Botones -->
@@ -109,22 +113,50 @@
     </form>
   </div>
 
+  <!-- Modal para imagen grande -->
+  <div 
+    id="image-modal" 
+    class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden"
+    onclick="closeModal()"
+  >
+    <div class="relative" onclick="event.stopPropagation()">
+      <button 
+        onclick="closeModal()" 
+        class="absolute top-2 right-2 text-white text-3xl font-bold hover:text-gray-300"
+        aria-label="Cerrar"
+      >&times;</button>
+
+      <img 
+        id="modal-image" 
+        src="{{ asset('storage/' . $producto->image) }}" 
+        alt="Imagen seleccionada" 
+        class="max-w-[90vw] max-h-[90vh] object-contain rounded shadow-lg"
+      >
+    </div>
+  </div>
+
   <script>
     function previewImage(event) {
       const file = event.target.files[0];
-      const previewContainer = document.getElementById('image-preview');
+      const previewContainer = document.getElementById('preview-img');
+      const modalImage = document.getElementById('modal-image');
 
       if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
-          previewContainer.innerHTML = '';
-          const img = document.createElement('img');
-          img.src = e.target.result;
-          img.className = 'w-full h-full object-cover rounded-full';
-          previewContainer.appendChild(img);
+          previewContainer.src = e.target.result;
+          modalImage.src = e.target.result;
         };
         reader.readAsDataURL(file);
       }
+    }
+
+    function openModal() {
+      document.getElementById('image-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('image-modal').classList.add('hidden');
     }
   </script>
 </body>

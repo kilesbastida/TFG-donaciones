@@ -29,9 +29,9 @@
       <div class="flex justify-center mb-6">
         <div class="text-center">
           @if(Auth::user()->avatar)
-            <img id="avatar-preview" src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Avatar" class="w-24 h-24 rounded-full object-cover mx-auto border border-gray-300">
+            <img id="avatar-preview" src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Avatar" class="w-24 h-24 rounded-full object-cover mx-auto border border-gray-300 cursor-pointer">
           @else
-            <div id="avatar-preview" class="w-24 h-24 rounded-full bg-gray-300 mx-auto flex items-center justify-center text-gray-600 text-sm border border-gray-300">
+            <div id="avatar-preview" class="w-24 h-24 rounded-full bg-gray-300 mx-auto flex items-center justify-center text-gray-600 text-sm border border-gray-300 cursor-default">
               Sin imagen
             </div>
           @endif
@@ -124,6 +124,14 @@
     </form>
   </div>
 
+  <!-- Modal para mostrar imagen en grande -->
+  <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
+    <div class="relative max-w-[90vw] max-h-[90vh]">
+      <button id="modal-close" class="absolute top-2 right-2 text-white text-3xl font-bold hover:text-gray-300" aria-label="Cerrar">&times;</button>
+      <img id="modal-image" src="" alt="Imagen ampliada" class="max-w-full max-h-full rounded shadow-lg object-contain" />
+    </div>
+  </div>
+
   <style>
     @keyframes fade-in {
       from {
@@ -165,15 +173,46 @@
         } else {
           const img = document.createElement('img');
           img.src = reader.result;
-          img.classList.add('w-24', 'h-24', 'rounded-full', 'object-cover', 'mx-auto', 'border', 'border-gray-300');
+          img.classList.add('w-24', 'h-24', 'rounded-full', 'object-cover', 'mx-auto', 'border', 'border-gray-300', 'cursor-pointer');
           img.id = 'avatar-preview';
           preview.replaceWith(img);
+          setupModal(); // Reinicializar el modal para el nuevo elemento img
         }
       };
       if (file) {
         reader.readAsDataURL(file);
       }
     }
+
+    function setupModal() {
+      const avatarPreview = document.getElementById('avatar-preview');
+      const imageModal = document.getElementById('image-modal');
+      const modalImage = document.getElementById('modal-image');
+      const modalClose = document.getElementById('modal-close');
+
+      if (!avatarPreview) return;
+
+      avatarPreview.style.cursor = 'pointer';
+
+      avatarPreview.onclick = () => {
+        if (avatarPreview.tagName === 'IMG') {
+          modalImage.src = avatarPreview.src;
+          imageModal.classList.remove('hidden');
+        }
+      };
+
+      modalClose.onclick = () => {
+        imageModal.classList.add('hidden');
+      };
+
+      imageModal.onclick = (e) => {
+        if (e.target === imageModal) {
+          imageModal.classList.add('hidden');
+        }
+      };
+    }
+
+    document.addEventListener('DOMContentLoaded', setupModal);
   </script>
 
 </body>
